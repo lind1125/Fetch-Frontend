@@ -1,10 +1,10 @@
 import axios from 'axios'
 import {setItem, getItem, removeItem} from '../utils/localStorage.utils'
-const API_URL = "http://localhost:8080/api/auth/"
+const API_URL = "http://localhost:8080/auth/"
 
 /*
-POST |	/api/auth/signup |	signup new account
-POST |	/api/auth/signin |	login an account
+POST |	/api/signup |	signup new account
+POST |	/api/signin |	login an account
 */
 
 
