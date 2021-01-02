@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {getCurrentUser, logout} from '../services/auth.service'
 import {getProfile, deleteProfile} from '../services/user.service'
+import {Link} from 'react-router-dom'
 
 const Profile = (props) =>{
   const currentUser = getCurrentUser() // from the header info
@@ -43,7 +44,7 @@ const Profile = (props) =>{
     <p>Dogs:</p>
     <ul>
       {dogs.map(dog=>{
-        return <li key={dog._id}>{dog.name}</li>
+        return <Link to={ { pathname:`/profile/dogs/${dog._id}`,state:{dog} } } key={dog._id} >{dog.name} </Link>
       })}
     </ul>
     <form onSubmit={deleteUser}>
