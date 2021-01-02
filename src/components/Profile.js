@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {getCurrentUser} from '../services/auth.service'
-import {getProfile} from '../services/user.service'
+import {getCurrentUser, logout} from '../services/auth.service'
+import {getProfile, deleteProfile} from '../services/user.service'
 
-const Profile = () =>{
+const Profile = (props) =>{
   const currentUser = getCurrentUser() // from the header info
   const [data,setData] = useState({})
   useEffect(()=>{
@@ -11,6 +11,13 @@ const Profile = () =>{
       console.log(response.data)
     })
   },[])
+  const deleteUser = () => {
+    deleteProfile().then(data=>{
+      logout()
+      props.history.push("/")
+      window.location.reload()
+    })
+  }
   return (
   <div className="container">
     <header className='jumbotron'>
@@ -25,8 +32,12 @@ const Profile = () =>{
     </strong>
     {currentUser.accessToken.substring(0,20)}...
     </p>
-
-
+    <p>Username: {data.username}</p>
+    <p>City: {data.location}</p>
+    <p>Email: {data.email}</p>
+    <form onSubmit={deleteUser}>
+      <button>Delete Account</button>
+    </form>
   </div>
 );}
 

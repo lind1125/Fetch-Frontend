@@ -5,6 +5,7 @@ const API_URL = "http://localhost:8080/"
 
 /*
 GET	 |   /profile	 |	retrieve user's profile
+DELETE	 |   /profile	 |	delete user's profile
 GET	 |  /api/test/user	 |	access User's content
 GET	 | /api/test/admin	 |	access Admin's content
 */
@@ -20,6 +21,9 @@ export const getProfile = () => {
   return axios.get(API_URL+'profile', {headers: authHeader()}) // HEADERS WITH AN S MONICA JFC
 }
 
+export const deleteProfile = () => {
+  return axios.delete(API_URL+'profile',{headers:authHeader()})
+}
 
 // export const getAdminBoard = () => {
 //   return axios.get(API_URL+'admin', {header: authHeader()})
