@@ -1,13 +1,22 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {getCurrentUser} from '../services/auth.service'
+import {getProfile} from '../services/user.service'
 
 const Profile = () =>{
-  const currentUser = getCurrentUser()
+  const currentUser = getCurrentUser() // from the header info
+  const [data,setData] = useState({})
+  useEffect(()=>{
+    getProfile().then(response=>{
+      setData(response.data)
+      console.log(response.data)
+    })
+  },[])
   return (
   <div className="container">
     <header className='jumbotron'>
       <h3>
         <strong>{currentUser.username}</strong>
+        {data.username}
       </h3>
     </header>
     <p>
@@ -16,10 +25,7 @@ const Profile = () =>{
     </strong>
     {currentUser.accessToken.substring(0,20)}...
     </p>
-    {/*  if current user has roles, then map through those roles */}
-    {currentUser.roles &&
-      currentUser.roles.map((role,index)=> <li key={index}>{role}</li>)
-    }
+
 
   </div>
 );}

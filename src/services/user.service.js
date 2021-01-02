@@ -1,25 +1,26 @@
 import axios from 'axios'
 import authHeader from '../utils/authHeader.utils'
 
-const API_URL = "http://localhost:8080/api/test/"
+const API_URL = "http://localhost:8080/"
 
 /*
-GET	 |   /api/test/all	 |	retrieve public content
+GET	 |   /profile	 |	retrieve user's profile
 GET	 |  /api/test/user	 |	access User's content
 GET	 | /api/test/admin	 |	access Admin's content
 */
 
 // retrieve public content
-export const getPublicContent = () => {
-  return axios.get(API_URL+'all')
+// export const getPublicContent = () => {
+//   return axios.get(API_URL+'all')
+// }
+
+// retrieve user's profile
+export const getProfile = () => {
+  console.log(authHeader())
+  return axios.get(API_URL+'profile', {headers: authHeader()}) // HEADERS WITH AN S MONICA JFC
 }
 
-// retrieve user's content
-export const getUserBoard = () => {
-  return axios.get(API_URL+'user', {header: authHeader()})
-}
 
-
-export const getAdminBoard = () => {
-  return axios.get(API_URL+'admin', {header: authHeader()})
-}
+// export const getAdminBoard = () => {
+//   return axios.get(API_URL+'admin', {header: authHeader()})
+// }
