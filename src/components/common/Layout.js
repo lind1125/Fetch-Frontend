@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom'
 import {getCurrentUser, logout} from '../../services/auth.service'
 const Layout = (props) => {
-  const [showAdminBoard, setShowAdminBoard] = useState(false)
+
   const [currentUser, setCurrentUser] = useState(undefined)
 
   useEffect(()=>{
@@ -11,8 +11,7 @@ const Layout = (props) => {
     if (user){
       // set current user to the currentUser state
       setCurrentUser(user)
-      // if user.roles has "ROLE_ADMIN" return true or false
-      setShowAdminBoard(user.roles.includes('ROLE_ADMIN'))
+
     }
 
   },[])
@@ -30,13 +29,7 @@ const Layout = (props) => {
           <Link to={"/home"} className="nav-link">Home</Link>
         </li>
 
-        {
-          showAdminBoard && (
-            <li className="nav-item">
-              <Link to={"/admin"} className="nav-link">Admin</Link>
-            </li>
-          )
-        }
+        
         {
           currentUser && (
             <li className="nav-item">
