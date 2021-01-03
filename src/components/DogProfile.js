@@ -7,11 +7,11 @@ import {deleteUserDog, getUserDog} from '../services/dogs.service.js'
 const DogProfile = (props) => {
   // TODO update to handle if the dog page accessed from elsewhere - i.e. if not props.location.state then do an axios request and render that.
   const [dogdata, setDogdata] = useState(props.location.state)
-  
+
   useEffect(()=>{
     if(!props.location.state){
       console.log('no dog data')
-      //make axios request to set dog data TODO
+      //make axios request to set dog data
       getUserDog(props.match.params.dogid).then(response=>{
         console.log(response.data)
         setDogdata(response.data)

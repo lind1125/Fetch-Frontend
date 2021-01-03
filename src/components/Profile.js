@@ -47,6 +47,7 @@ const Profile = (props) =>{
         return <Link to={ { pathname:`/profile/dogs/${dog._id}`,state:{dog:dog} } } key={dog._id} >{dog.name} </Link>
       })}
     </ul>
+    <Link to="/profile/dogs/new" className="btn btn-primary">New Dog</Link>
     <form onSubmit={deleteUser}>
       <button>Delete Account</button>
     </form>
