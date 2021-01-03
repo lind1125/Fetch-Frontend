@@ -6,16 +6,15 @@ import NotLoggedIn from './common/NotLoggedIn'
 
 // destructure props.location.state to have access on state
 const DogProfile = (props) => {
-  // TODO check if user logged in, if not display link to login/signup
+
   const currentUser = getCurrentUser() // from the header info
   const [dogdata, setDogdata] = useState(props.location.state)
 
   useEffect(()=>{
+    // If user did not navigate to this page from their profile, make the get request
     if(!props.location.state){
-      console.log('no dog data')
       //make axios request to set dog data
       getUserDog(props.match.params.dogid).then(response=>{
-        console.log(response.data)
         setDogdata(response.data)
       })
     } else{
@@ -24,7 +23,6 @@ const DogProfile = (props) => {
   },[])
 
   const deleteDog = () => {
-    console.log(props)
     deleteUserDog(dogdata.dog._id)
     props.history.push("/profile")
     window.location.reload()
