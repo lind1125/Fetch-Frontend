@@ -7,7 +7,7 @@ import NotLoggedIn from './common/NotLoggedIn'
 // destructure props.location.state to have access on state
 const DogProfile = (props) => {
 
-  const currentUser = getCurrentUser() // from the header info
+  const currentUser = getCurrentUser() // from the header info, could probably pass down as props TODO
   const [dogdata, setDogdata] = useState(props.location.state)
 
   useEffect(()=>{
