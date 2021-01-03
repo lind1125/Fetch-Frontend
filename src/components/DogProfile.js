@@ -1,11 +1,13 @@
 import React, {useState,useEffect} from 'react';
+import {getCurrentUser} from '../services/auth.service'
 import {Link} from 'react-router-dom'
 import {deleteUserDog, getUserDog} from '../services/dogs.service.js'
-
+import NotLoggedIn from './common/NotLoggedIn'
 
 // destructure props.location.state to have access on state
 const DogProfile = (props) => {
-  // TODO update to handle if the dog page accessed from elsewhere - i.e. if not props.location.state then do an axios request and render that.
+  // TODO check if user logged in, if not display link to login/signup
+  const currentUser = getCurrentUser() // from the header info
   const [dogdata, setDogdata] = useState(props.location.state)
 
   useEffect(()=>{
@@ -29,6 +31,9 @@ const DogProfile = (props) => {
   }
 
   const display = () => {
+    if(!currentUser){
+      return <NotLoggedIn/>
+    }
     if(dogdata){
       return(
         <div><h1>Dog profile page {dogdata.name}</h1>

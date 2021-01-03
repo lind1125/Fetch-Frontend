@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {getCurrentUser, logout} from '../services/auth.service'
 import {getProfile, deleteProfile} from '../services/user.service'
 import {Link} from 'react-router-dom'
+import NotLoggedIn from './common/NotLoggedIn'
 
 const Profile = (props) =>{
   const currentUser = getCurrentUser() // from the header info
@@ -25,22 +26,9 @@ const Profile = (props) =>{
   }
 
   const display = () => {
-    return !currentUser ? (
-       <div>
-        You must be logged in:
-        <div>
-          <Link to={'/login'} >
-          Login
-        </Link>
-        </div>
-        or
-        <div>
-          <Link to={'/signup'}>
-          Signup
-        </Link>
-        </div>
-      </div>
-    ) :  (
+    return !currentUser ? 
+       <NotLoggedIn/>
+     :  (
         <div className="container">
           <header className='jumbotron'>
             <h3>
@@ -70,7 +58,7 @@ const Profile = (props) =>{
         </div>
       )
     }
-  
+
 
 
   return display()
