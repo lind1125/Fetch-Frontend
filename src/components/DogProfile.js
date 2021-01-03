@@ -31,7 +31,7 @@ const DogProfile = (props) => {
       </div>
       )
     } else {
-      return <p>No dog <Link to={"/profile"} className="nav-link">return home</Link></p>
+      return <p>Please access dog from your profile page <Link to={"/profile"} className="nav-link">return home</Link></p>
     }
   }
 
