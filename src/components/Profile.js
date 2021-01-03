@@ -44,7 +44,7 @@ const Profile = (props) =>{
     <p>Dogs:</p>
     <ul>
       {dogs.map(dog=>{
-        return <Link to={ { pathname:`/profile/dogs/${dog._id}`,state:{dog} } } key={dog._id} >{dog.name} </Link>
+        return <Link to={ { pathname:`/profile/dogs/${dog._id}`,state:{dog:dog} } } key={dog._id} >{dog.name} </Link>
       })}
     </ul>
     <form onSubmit={deleteUser}>

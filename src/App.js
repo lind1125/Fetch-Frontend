@@ -18,7 +18,7 @@ const App = () => {
         <Route exact path={'/login'} component={Login}/>
         <Route exact path={'/signup'} component={Signup}/>
         <Route exact path={'/profile'} component={Profile}/>
-        <Route path={'/profile/dogs/:dogid'} render={({location})=><DogProfile location={location}/>}/>
+        <Route path={'/profile/dogs/:dogid'} component={DogProfile}/>
       </Switch>
     </Layout>
   )
