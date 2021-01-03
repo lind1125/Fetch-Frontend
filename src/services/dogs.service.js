@@ -7,3 +7,8 @@ export const deleteUserDog = (dogid) => {
   console.log(API_URL+'profile/dogs'+dogid)
   return axios.delete(API_URL+'profile/dogs/'+dogid,{headers:authHeader()})
 }
+
+
+export const getUserDog = (dogid) => {
+  return axios.get(API_URL+'profile/dogs/'+dogid,{headers:authHeader()})
+}
