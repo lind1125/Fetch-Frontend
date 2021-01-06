@@ -17,7 +17,7 @@ GET	 | /api/test/admin	 |	access Admin's content
 
 // retrieve user's profile
 export const getProfile = () => {
-  console.log(authHeader())
+  // console.log(authHeader())
   return axios.get(API_URL+'profile', {headers: authHeader()}) // HEADERS WITH AN S MONICA JFC
 }
 

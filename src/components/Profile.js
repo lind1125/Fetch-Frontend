@@ -22,17 +22,15 @@ const Profile = (props) =>{
   const deleteUser = () => {
     console.log('deleting user')
     deleteProfile().then(data=>{
-      logout()
       console.log('pushing to new page')
-
-      props.history.push("/signup")
-      window.location.reload()
-
     })
+    logout()
+    props.history.push("/signup")
+    window.location.reload()
   }
 
   const display = () => {
-    console.log(currentUser)
+    // console.log(currentUser)
     return !currentUser ?
        <NotLoggedIn/>
      :  (
