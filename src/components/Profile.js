@@ -10,23 +10,30 @@ const Profile = (props) =>{
   const [dogs, setDogs] = useState([])
 
   useEffect(()=>{
-    getProfile().then(response=>{
-      setData(response.data)
-      setDogs(response.data.dogs)
-      console.log(response.data)
-    })
+    if(currentUser){
+      getProfile().then(response=>{
+        setData(response.data)
+        setDogs(response.data.dogs)
+        console.log(response.data)
+      })
+    }
   },[])
 
   const deleteUser = () => {
+    console.log('deleting user')
     deleteProfile().then(data=>{
       logout()
-      props.history.push("/")
+      console.log('pushing to new page')
+
+      props.history.push("/signup")
       window.location.reload()
+
     })
   }
 
   const display = () => {
-    return !currentUser ? 
+    console.log(currentUser)
+    return !currentUser ?
        <NotLoggedIn/>
      :  (
         <div className="container">
@@ -46,11 +53,12 @@ const Profile = (props) =>{
           <p>City: {data.location}</p>
           <p>Email: {data.email}</p>
           <p>Dogs:</p>
-          <ul>
+          {dogs?<ul>
             {dogs.map(dog=>{
               return <Link to={ { pathname:`/profile/dogs/${dog._id}`,state:{dog:dog} } } key={dog._id} >{dog.name} </Link>
             })}
-          </ul>
+          </ul>:<></>}
+
           <Link to="/profile/dogs/new" className="btn btn-primary">New Dog</Link>
           <form onSubmit={deleteUser}>
             <button className="btn btn-danger">Delete Account</button>
