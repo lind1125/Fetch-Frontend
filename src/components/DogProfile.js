@@ -23,7 +23,7 @@ const DogProfile = (props) => {
   },[])
 
   const deleteDog = () => {
-    deleteUserDog(dogdata.dog._id)
+    deleteUserDog(dogdata._id) 
     props.history.push("/profile")
     window.location.reload()
   }
