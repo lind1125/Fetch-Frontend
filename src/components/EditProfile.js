@@ -1,4 +1,4 @@
-import React, {useState , useRef} from 'react';
+import React, {useState , useRef, useEffect} from 'react';
 import Form from 'react-validation/build/form'
 import Input from 'react-validation/build/input'
 import Select from 'react-validation/build/select'
@@ -11,7 +11,7 @@ import BtnSpinner from './common/BtnSpinner'
 import NotLoggedIn from './common/NotLoggedIn'
 
 import {resMessage} from '../utils/functions.utils'
-import { editProfile } from '../services/user.service'
+import {getProfile, editProfile } from '../services/user.service'
 
 const required = (value) => {
   if(!value){
@@ -40,6 +40,15 @@ const EditProfile = (props) => {
   const [data,setData] = useState({email:props.location.state?props.location.state.email:"", location:props.location.state?props.location.state.location:""})
   const [message, setMessage] = useState()
   const [successful, setSuccessful] = useState(false)
+  const currentUser = getCurrentUser()
+  useEffect(()=>{
+    // if user accessing from other than link, load with axios request
+    if(!props.location.state && currentUser){
+      getProfile().then(response=>{
+        setData({email:response.data.email,location:response.data.location})
+      })
+    }
+  },[])
 
   const handleChange = (e) =>{
     setData({...data,[e.target.name]:e.target.value})
@@ -55,17 +64,13 @@ const EditProfile = (props) => {
       setSuccessful(true)
       // register the user
       editProfile(data.email, data.location).then((response)=>{
-        setMessage('Successfully edited user')
+        setMessage('Successfully edited your profile')
         setSuccessful(false)
-
         setTimeout(()=>{
           props.history.push('/profile')
-
         },200)
-
       },
       (error)=>{
-
           setSuccessful(false)
           setMessage(resMessage(error))
         }
@@ -76,7 +81,8 @@ const EditProfile = (props) => {
   }
 
   const display = () => {
-    return !getCurrentUser() ?
+    // if trying to access and user is not logged in
+    return !currentUser ?
     <NotLoggedIn/> :
     (
       <div className="col-md-12">

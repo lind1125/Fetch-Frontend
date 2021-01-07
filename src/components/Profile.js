@@ -14,7 +14,7 @@ const Profile = (props) =>{
       getProfile().then(response=>{
         setData(response.data)
         setDogs(response.data.dogs)
-        console.log(response.data)
+        // console.log(response.data)
       })
     }
   },[])
