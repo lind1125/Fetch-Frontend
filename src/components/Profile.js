@@ -62,7 +62,7 @@ const Profile = (props) =>{
             <button className="btn btn-danger">Delete Account</button>
           </form>
 
-          <Link to={{pathname:"/profile/edit",state:{email:data.email,location:data.location}}} className="btn btn-primary">Edit Profile</Link>
+          <Link to={{pathname:"/profile/edit",state:{email:data.email,location:data}}} className="btn btn-primary">Edit Profile</Link>
 
         </div>
       )
