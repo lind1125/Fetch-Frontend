@@ -1,11 +1,15 @@
 import React, {useState , useRef} from 'react';
 import Form from 'react-validation/build/form'
 import Input from 'react-validation/build/input'
+import Select from 'react-validation/build/select'
 import CheckButton from 'react-validation/build/button'
 import validator from 'validator';
 // Common components we made
 import FormGroup from './common/FormGroup'
 import BtnSpinner from './common/BtnSpinner'
+
+import {resMessage} from '../utils/functions.utils'
+import { editProfile } from '../services/user.service'
 
 const required = (value) => {
   if(!value){
@@ -31,7 +35,7 @@ const EditProfile = (props) => {
   const form = useRef()
   const checkBtn = useRef()
 
-  const [data,setData] = useState({email:props.location.state.email, location:props.location.state.location})
+  const [data,setData] = useState({email:props.location.state?props.location.state.email:"", location:props.location.state?props.location.state.location:""})
   const [message, setMessage] = useState()
   const [successful, setSuccessful] = useState(false)
 
@@ -39,8 +43,32 @@ const EditProfile = (props) => {
     setData({...data,[e.target.name]:e.target.value})
   }
 
-  const handleEditProfile = () => {
+  const handleEditProfile = (e) => {
+    e.preventDefault()
+    setMessage("")
+    setSuccessful(false)
+    // use the library to validate all fields on the form
+    form.current.validateAll()
+    if(checkBtn.current.context._errors.length === 0){
+      // register the user
+      editProfile(data.email, data.location).then((response)=>{
+        setMessage('Successfully edited user')
+        setSuccessful(true)
+        setTimeout(()=>{
+          props.history.push('/profile')
 
+        },200)
+
+      },
+      (error)=>{
+
+          setSuccessful(false)
+          setMessage(resMessage(error))
+        }
+      )
+    } else {
+      setSuccessful(false)
+    }
   }
 
   return (
@@ -65,14 +93,13 @@ const EditProfile = (props) => {
           </FormGroup>
 
           <FormGroup text='location'>
-            <Input
-              type="location"
-              className="form-control"
-              name="location"
-              value={data.location}
-              onChange={handleChange}
-              validations={[required]}
-            />
+            <Select  name='location' className="form-control" value={data.location} onChange={handleChange}validations={[required]}>
+              <option value='San Francisco, SF'>San Francisco</option>
+              <option value='New York, NY'>New York</option>
+              <option value='Portland, OR'>Portland</option>
+              <option value='Houston, TX'>Houston</option>
+            </Select>
+
           </FormGroup>
           <BtnSpinner loading={successful} text="Edit Profile"/>
 

@@ -20,9 +20,9 @@ const Profile = (props) =>{
   },[])
 
   const deleteUser = () => {
-    console.log('deleting user')
+    //console.log('deleting user')
     deleteProfile().then(data=>{
-      console.log('pushing to new page')
+      //console.log('pushing to new page')
     })
     logout()
     props.history.push("/signup")
@@ -63,7 +63,7 @@ const Profile = (props) =>{
           </form>
 
           <Link to={{pathname:"/profile/edit",state:{email:data.email,location:data.location}}} className="btn btn-primary">Edit Profile</Link>
-          
+
         </div>
       )
     }

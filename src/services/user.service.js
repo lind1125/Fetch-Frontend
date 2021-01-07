@@ -28,3 +28,7 @@ export const deleteProfile = () => {
 // export const getAdminBoard = () => {
 //   return axios.get(API_URL+'admin', {header: authHeader()})
 // }
+
+export const editProfile = (email,location) => {
+  return axios.put(API_URL+'profile',{email,location},{headers:authHeader()})
+}
