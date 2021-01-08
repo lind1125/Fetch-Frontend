@@ -12,6 +12,10 @@ const ImageUpload = () => {
   const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false)
 
+  const handleChange = e => {
+    //sets image state to file selected by user
+    setImage(e.target.files[0])
+  }
 
   return (
     <div>
@@ -20,9 +24,8 @@ const ImageUpload = () => {
           <Input
             type="file"
             className="form-control"
-            name="password"
-            // value=
-            // onChange={handleChange}
+            name="image" 
+            onChange={handleChange}
             // validations={[required]}
             />
         </FormGroup>
