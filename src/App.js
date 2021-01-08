@@ -4,6 +4,7 @@ import Home from './components/Home'
 import Login from './components/Login'
 import Signup from './components/Signup'
 import Profile from './components/Profile'
+import EditProfile from './components/EditProfile'
 import DogProfile from './components/DogProfile'
 import DogForm from './components/DogForm'
 // HOC which wraps around other Components
@@ -19,6 +20,7 @@ const App = () => {
         <Route exact path={'/login'} component={Login}/>
         <Route exact path={'/signup'} component={Signup}/>
         <Route exact path={'/profile'} component={Profile}/>
+        <Route exact path={'/profile/edit'} component={EditProfile}/>
         <Route exact path={'/profile/dogs/new'} component={DogForm}/>
         <Route path={'/profile/dogs/:dogid'} component={DogProfile}/>
       </Switch>

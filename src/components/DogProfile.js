@@ -7,8 +7,8 @@ import NotLoggedIn from './common/NotLoggedIn'
 // destructure props.location.state to have access on state
 const DogProfile = (props) => {
 
-  const currentUser = getCurrentUser() // from the header info
-  const [dogdata, setDogdata] = useState(props.location.state)
+  const currentUser = getCurrentUser() // from the header info, could probably pass down as props TODO
+  const [dogdata, setDogdata] = useState(props.location.state && props.location.state.dog) // if accessing from the link, pull data from props.location.state.dog
 
   useEffect(()=>{
     // If user did not navigate to this page from their profile, make the get request
@@ -17,13 +17,11 @@ const DogProfile = (props) => {
       getUserDog(props.match.params.dogid).then(response=>{
         setDogdata(response.data)
       })
-    } else{
-      setDogdata(props.location.state.dog)
     }
   },[])
 
   const deleteDog = () => {
-    deleteUserDog(dogdata.dog._id)
+    deleteUserDog(dogdata._id)
     props.history.push("/profile")
     window.location.reload()
   }
