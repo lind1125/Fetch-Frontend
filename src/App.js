@@ -7,6 +7,7 @@ import Profile from './components/Profile'
 import EditProfile from './components/EditProfile'
 import DogProfile from './components/DogProfile'
 import DogForm from './components/DogForm'
+import ImageUpload from './components/ImageUpload'
 // HOC which wraps around other Components
 import Layout from './components/common/Layout'
 // CSS imports
@@ -23,6 +24,7 @@ const App = () => {
         <Route exact path={'/profile/edit'} component={EditProfile}/>
         <Route exact path={'/profile/dogs/new'} component={DogForm}/>
         <Route path={'/profile/dogs/:dogid'} component={DogProfile}/>
+        <Route path={'/imageupload'} component={ImageUpload}/>
       </Switch>
     </Layout>
   )
