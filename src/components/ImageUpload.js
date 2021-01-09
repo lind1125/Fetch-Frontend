@@ -15,7 +15,7 @@ const ImageUpload = () => {
 
   const [selectedImage, setSelectedImage] = useState('');
   const [previewSelection, setPreviewSelection] = useState('')
-  const [loading, setLoading] = useState(false)
+
 
   const handleChange = e => {
     //sets image state to file selected by user
@@ -43,13 +43,19 @@ const ImageUpload = () => {
     const formData = new FormData();
   formData.append('file', image);
   formData.append('upload_preset', preset)
-  axios.post(url, formData)
-  .then(response=> {
-    console.log(response)
-  })
-  .catch(err => {
-      console.error(err)
-  })
+  try {
+    const res = await axios.post(url, formData);
+    console.log('RES DATA:', res.data)
+    // const imageUrl = res.data.secure_url;
+    // const image = await axios.post('http://localhost:3000/upload', {
+    //   imageUrl
+    // // });
+    // setLoading(false);
+    // setSelectedImage(image.data);
+    // console.log(image.data)
+  } catch (err) {
+    console.error('ERROR HAPPENING', err);
+  }
 }
   
 
