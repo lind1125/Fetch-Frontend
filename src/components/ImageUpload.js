@@ -9,16 +9,27 @@ import BtnSpinner from './common/BtnSpinner'
 
 const ImageUpload = () => {
 
-  const [image, setImage] = useState('');
+  const [selectedImage, setSelectedImage] = useState('');
+  const [previewSelection, setPreviewSelection] = useState('')
   const [loading, setLoading] = useState(false)
 
   const handleChange = e => {
     //sets image state to file selected by user
-    setImage(e.target.files[0])
+    const imageFile = e.target.files[0]
+    previewSelectedFile(imageFile)
+  }
+
+  // previews the selected image
+  const previewSelectedFile = (imageFile) => {
+    const reader = new FileReader()
+    reader.readAsDataURL(imageFile)
+    reader.onloadend = () => {
+      setPreviewSelection(reader.result)
+    }
   }
 
   return (
-    <div>
+    <div className='card card-container'>
       <Form>
         <FormGroup text='Upload a photo of your dog!'>
           <Input
@@ -26,11 +37,19 @@ const ImageUpload = () => {
             className="form-control"
             name="image" 
             onChange={handleChange}
+            value={selectedImage}
             // validations={[required]}
             />
         </FormGroup>
         <BtnSpinner loading={loading} text="Submit"/>
       </Form>
+      {previewSelectedFile && (
+        <img 
+        src={previewSelection}
+        alt='' 
+        className='img-fluid'
+        />
+      )}
     </div>
   )
 }
