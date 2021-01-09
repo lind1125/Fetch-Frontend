@@ -4,6 +4,8 @@ import Input from 'react-validation/build/input'
 import CheckButton from 'react-validation/build/button'
 import Select from 'react-validation/build/select'
 
+import ImageUpload from './ImageUpload'
+
 // Common components we made
 import FormGroup from './common/FormGroup'
 import BtnSpinner from './common/BtnSpinner'
@@ -139,8 +141,8 @@ const DogForm = (props) => {
                 validations={[required]}
               />
             </FormGroup>
-
-            <FormGroup text='Link to Picture'>
+            <ImageUpload />
+            {/* <FormGroup text='Link to Picture'>
               <Input
                 type="text"
                 className="form-control"
@@ -148,8 +150,8 @@ const DogForm = (props) => {
                 value={data.picture_url}
                 onChange={handleChange}
                 validations={[required,vurl]}
-              />
-            </FormGroup>
+              /> */}
+            {/* </FormGroup> */}
 
             <FormGroup text="Short Bio">
               <Input

@@ -46,13 +46,9 @@ const ImageUpload = () => {
   try {
     const res = await axios.post(url, formData);
     console.log('RES DATA:', res.data)
-    // const imageUrl = res.data.secure_url;
-    // const image = await axios.post('http://localhost:3000/upload', {
-    //   imageUrl
-    // // });
-    // setLoading(false);
-    // setSelectedImage(image.data);
-    // console.log(image.data)
+    const imageUrl = res.data.secure_url
+    return imageUrl
+
   } catch (err) {
     console.error('ERROR HAPPENING', err);
   }
@@ -60,9 +56,8 @@ const ImageUpload = () => {
   
 
   return (
-    <div className='card card-container'>
+    <div>
       <Form onSubmit={handleSubmitImage} >
-        <FormGroup text='Upload a photo of your dog!'>
           <Input
             type="file"
             className="form-control"
@@ -71,8 +66,7 @@ const ImageUpload = () => {
             value={selectedImage}
             // validations={[required]}
             />
-        </FormGroup>
-        <button className='btn btn-primary btn-block' type='submit'>
+        <button className='btn btn-primary' type='submit'>
           Upload Image
         </button>
       </Form>
@@ -80,7 +74,7 @@ const ImageUpload = () => {
           <img 
           src={previewSelection}
           alt='' 
-          className='img-thumbnail'
+          className='img-fluid'
           />
           )}
     </div>
