@@ -74,7 +74,7 @@ const ImageUpload = () => {
           <img 
           src={previewSelection}
           alt='' 
-          className='img-fluid'
+          id='preview-image'
           />
           )}
     </div>

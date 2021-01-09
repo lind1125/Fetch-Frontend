@@ -31,3 +31,6 @@ label {
   border-radius: 50%;
 }
 
+#preview-image {
+  height: 300px;
+}
