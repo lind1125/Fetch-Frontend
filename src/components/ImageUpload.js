@@ -59,9 +59,9 @@ const ImageUpload = ({required, vurl}) => {
     <div>
       <Form onSubmit={handleSubmitImage} >
           <Input
-            type="file"
-            className="form-control"
-            name="image" 
+            type='file'
+            className='form-control-file'
+            name='image'
             onChange={handleChange}
             value={selectedImage}
             validations={[required, vurl]}
