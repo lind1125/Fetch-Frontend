@@ -7,7 +7,7 @@ import FormGroup from './common/FormGroup'
 // import BtnSpinner from './common/BtnSpinner'
 
 
-const ImageUpload = () => {
+const ImageUpload = ({required, vurl}) => {
 
   const url= 'https://api.cloudinary.com/v1_1/sfx818fetchapp/image/upload'
   const preset = 'nl04th0n'
@@ -64,7 +64,7 @@ const ImageUpload = () => {
             name="image" 
             onChange={handleChange}
             value={selectedImage}
-            // validations={[required]}
+            validations={[required, vurl]}
             />
         <button className='btn btn-primary' type='submit'>
           Upload Image

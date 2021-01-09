@@ -36,6 +36,7 @@ const vurl = (value) => {
   }
 }
 
+
 const textLengthBio = (value) => {
   if(value.length>500){
     return (
@@ -141,7 +142,7 @@ const DogForm = (props) => {
                 validations={[required]}
               />
             </FormGroup>
-            <ImageUpload />
+            <ImageUpload required={required} vurl={vurl}/>
             {/* <FormGroup text='Link to Picture'>
               <Input
                 type="text"
