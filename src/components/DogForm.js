@@ -99,11 +99,26 @@ const DogForm = (props) => {
     }
     setLoading(true)
     // check min_age lte max_age and same for size
-    newUserDog({data})
-    // .then((err,res)=>{
-    //
-    // })
-    setLoading(false)
+    if(checkBtn.current.context._errors.length === 0){
+      setLoading(false)
+      console.log(data)
+      newUserDog(data).then((response)=>{
+        setMessage(`Successfully added ${data.name}`)
+        setSuccessful(true)
+        setLoading(false)
+        setTimeout(()=>{
+          props.history.push('/profile')
+        },200)
+      },
+      (error)=>{
+        setSuccessful(false)
+        setLoading(false)
+        setMessage(resMessage(error))
+      }
+    )} else {
+      setSuccessful(false)
+      setLoading(false)
+    }
   }
 
   const display = () => {
