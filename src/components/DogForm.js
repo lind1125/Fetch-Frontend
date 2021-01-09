@@ -192,6 +192,7 @@ const DogForm = (props) => {
                 type="number"
                 className="form-control"
                 name="age"
+                min={0}
                 value={data.age}
                 onChange={handleChange}
                 validations={[required]}
@@ -221,6 +222,7 @@ const DogForm = (props) => {
                   type="number"
                   className="form-control"
                   name="min_age"
+                  min={0}
                   value={data.min_age}
                   onChange={handleChange}
                   validations={[required]}
@@ -232,6 +234,7 @@ const DogForm = (props) => {
                   type="number"
                   className="form-control"
                   name="max_age"
+                  min={0}
                   value={data.max_age}
                   onChange={handleChange}
                   validations={[required]}
