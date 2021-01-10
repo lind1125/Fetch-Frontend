@@ -8,21 +8,14 @@ import FormGroup from './common/FormGroup'
 // Cut methods into dogform. Set methods as a variable name to import to this component. When you want to call it, use variableName.bind(this, <the actual parameters of the function>.)
 
 
-const ImageUpload = ({handler, preview, imageSubmit, previewState, upload}) => {
+const ImageUpload = ({handler, preview, imageSubmit, previewState}) => {
 
   const [selectedImage, setSelectedImage] = useState('');
 
- 
-
-    // console.log("HANDLER: ", handler)
-    // console.log("PREVIEW: ", preview)
-    // console.log("IMAGE SUBMIT: ", imageSubmit)
-    // console.log(upload)
-
-
+    
   return (
-    <div className='card card-container'>
-      <Form onSubmit={imageSubmit} >
+    <>
+        <Form>
         <FormGroup text='Upload a photo of your dog!'>
           <Input
             type="file"
@@ -33,10 +26,10 @@ const ImageUpload = ({handler, preview, imageSubmit, previewState, upload}) => {
             // validations={[required]}
             />
         </FormGroup>
-        <button className='btn btn-primary btn-block' type='submit'>
+        <button className='btn btn-primary btn-block' type='button' onClick={imageSubmit.bind(this)}>
           Upload Image
         </button>
-      </Form>
+    </Form>
         {preview && (
           <img 
           src={previewState}
@@ -44,7 +37,7 @@ const ImageUpload = ({handler, preview, imageSubmit, previewState, upload}) => {
           className='img-thumbnail'
           />
           )}
-    </div>
+    </>
   )
 }
 
