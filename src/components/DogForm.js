@@ -85,17 +85,11 @@ const DogForm = (props) => {
     setData({...data,[e.target.name]:e.target.value})
   }
 
-
-  // *** Functions for image upload ***
-  // const url= 'https://api.cloudinary.com/v1_1/sfx818fetchapp/image/upload'
-  // const preset = 'nl04th0n'
-
-  
+// *** State for image uploader ***
   const [previewSelection, setPreviewSelection] = useState('')
   const [selectedImage, setSelectedImage] = useState('');
-
-
-
+  
+  // *** Functions for image uploader ***  
   const handleImageChange = e => {
     //sets image state to file selected by user
     const imageFile = e.target.files[0]
@@ -205,7 +199,6 @@ const DogForm = (props) => {
               preview={previewImageFile}
               imageState={selectedImage}
               imageSubmit={handleSubmitImage}
-              // upload={uploadImage}
             />
             <FormGroup text='Link to Picture'>
               <Input
