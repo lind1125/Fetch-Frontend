@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from 'react'
-import axios from 'axios'
+import React, {useState} from 'react'
 import Form from 'react-validation/build/form'
 import Input from 'react-validation/build/input'
 // Common componenets

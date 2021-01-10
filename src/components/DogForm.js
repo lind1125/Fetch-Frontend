@@ -98,7 +98,6 @@ const DogForm = (props) => {
 
   // previews the selected image
   const previewImageFile = (imageFile) => {
-    console.log(imageFile)
     const reader = new FileReader()
     reader.readAsDataURL(imageFile)
     reader.onloadend = () => {
@@ -119,21 +118,26 @@ const DogForm = (props) => {
     const preset = 'nl04th0n'
     
     const formData = new FormData();
-  formData.append('file', image);
-  formData.append('upload_preset', preset)
-  try {
-    const res = await axios.post(url, formData);
-    console.log('RES DATA:', res.data)
-    // const imageUrl = res.data.secure_url;
-    // const image = await axios.post('http://localhost:3000/upload', {
-    //   imageUrl
-    // // });
-    // setLoading(false);
-    // setSelectedImage(image.data);
-    // console.log(image.data)
-  } catch (err) {
-    console.error('ERROR HAPPENING', err);
-  }
+    formData.append('file', image);
+    formData.append('upload_preset', preset)
+    try {
+      const res = await axios.post(url, formData);
+      console.log('RES DATA:', res.data)
+      const imageUrl = res.data.secure_url;
+      handleImageValue(imageUrl)
+      // const image = await axios.post('http://localhost:3000/upload', {
+      //   imageUrl
+      // // });
+      // setLoading(false);
+      // setSelectedImage(image.data);
+      // console.log(image.data)
+    } catch (err) {
+      console.error('ERROR HAPPENING', err);
+    }
+}
+
+const handleImageValue = (e) => {
+  console.log(e.target)
 }
 
   const handleSubmit = (e) => {
@@ -200,13 +204,13 @@ const DogForm = (props) => {
               imageState={selectedImage}
               imageSubmit={handleSubmitImage}
             />
-            <FormGroup text='Link to Picture'>
+            <FormGroup className='d-none' text=''>
               <Input
                 type="text"
-                className="form-control"
+                className="form-control d-none"
                 name="picture_url"
-                value={data.picture_url}
-                onChange={handleChange}
+                value=''
+                onChange={handleImageValue}
                 validations={[required,vurl]}
               />
             </FormGroup>
