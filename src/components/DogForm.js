@@ -61,7 +61,6 @@ const DogForm = (props) => {
   const form = useRef()
   const checkBtn = useRef()
 
-
   const [message,setMessage] = useState("")
   const [loading,setLoading] = useState(false)
   const [successful, setSuccessful] = useState(false)
@@ -82,12 +81,14 @@ const DogForm = (props) => {
     )
 
   const handleChange = (e) =>{
+    console.log(e.target.value)
     setData({...data,[e.target.name]:e.target.value})
   }
 
 // *** State for image uploader ***
   const [previewSelection, setPreviewSelection] = useState('')
-  const [selectedImage, setSelectedImage] = useState('');
+  const [selectedImage, setSelectedImage] = useState('')
+
   
   // *** Functions for image uploader ***  
   const handleImageChange = e => {
@@ -124,7 +125,7 @@ const DogForm = (props) => {
       const res = await axios.post(url, formData);
       console.log('RES DATA:', res.data)
       const imageUrl = res.data.secure_url;
-      handleImageValue(imageUrl)
+      // handleImageValue(imageUrl)
       // const image = await axios.post('http://localhost:3000/upload', {
       //   imageUrl
       // // });
@@ -136,15 +137,17 @@ const DogForm = (props) => {
     }
 }
 
-const handleImageValue = (e) => {
-  console.log(e.target)
-}
+// const handleImageValue = (imageUrl) => {
+//   setData({picture_url: imageUrl})
+// }
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    console.log("starting", data)
     setMessage("")
     // use the library to validate all fields on the form
     form.current.validateAll()
+    console.log("after validation", data)
     // check on ages and sizes
     if(data.min_age>data.max_age){
       setMessage("Min age must be less than max age")
@@ -158,7 +161,7 @@ const handleImageValue = (e) => {
     // check min_age lte max_age and same for size
     if(checkBtn.current.context._errors.length === 0){
       setLoading(false)
-      console.log(data)
+      console.log('ABOUT TO PUSH IT:', data)
       newUserDog(data).then((response)=>{
         setMessage(`Successfully added ${data.name}`)
         setSuccessful(true)
@@ -197,20 +200,20 @@ const handleImageValue = (e) => {
               />
             </FormGroup>
            {/* image upload component */}
-            <ImageUpload 
+            {/* <ImageUpload 
               handler={handleImageChange}
               previewState={previewSelection}
               preview={previewImageFile}
               imageState={selectedImage}
               imageSubmit={handleSubmitImage}
-            />
+            /> */}
             <FormGroup className='d-none' text=''>
               <Input
                 type="text"
-                className="form-control d-none"
+                className="form-control"
                 name="picture_url"
-                value=''
-                onChange={handleImageValue}
+                value={data.picture_url}
+                onChange={handleChange}
                 validations={[required,vurl]}
               />
             </FormGroup>

@@ -31,6 +31,7 @@ const DogProfile = (props) => {
       return <NotLoggedIn/>
     }
     if(dogdata){
+      console.log(dogdata)
       return(
         <div><h1>Dog profile page {dogdata.name}</h1>
         <p>Breed: {dogdata.breed}</p>
