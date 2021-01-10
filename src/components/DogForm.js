@@ -1,8 +1,10 @@
 import React, {useState, useRef} from 'react';
+import axios from 'axios'
 import Form from 'react-validation/build/form'
 import Input from 'react-validation/build/input'
 import CheckButton from 'react-validation/build/button'
 import Select from 'react-validation/build/select'
+import ImageUpload from './ImageUpload'
 
 // Common components we made
 import FormGroup from './common/FormGroup'
@@ -83,6 +85,59 @@ const DogForm = (props) => {
     setData({...data,[e.target.name]:e.target.value})
   }
 
+
+  // *** Functions for image upload ***
+  const url= 'https://api.cloudinary.com/v1_1/sfx818fetchapp/image/upload'
+  const preset = 'nl04th0n'
+
+  
+  const [previewSelection, setPreviewSelection] = useState('')
+
+
+
+  const handleImageChange = e => {
+    //sets image state to file selected by user
+    const imageFile = e.target.files[0]
+    previewImageFile(imageFile)
+  }
+
+  // previews the selected image
+  const previewImageFile = (imageFile) => {
+    console.log(imageFile)
+    const reader = new FileReader()
+    reader.readAsDataURL(imageFile)
+    reader.onloadend = () => {
+      setPreviewSelection(reader.result)
+    }
+  }
+
+
+  const handleSubmitImage = (e) => {
+    console.log(e.target)
+    e.preventDefault()
+    if (!previewSelection) return
+    uploadImage(previewSelection)
+  }
+
+  const uploadImage = async (image) => {
+    const formData = new FormData();
+  formData.append('file', image);
+  formData.append('upload_preset', preset)
+  try {
+    const res = await axios.post(url, formData);
+    console.log('RES DATA:', res.data)
+    // const imageUrl = res.data.secure_url;
+    // const image = await axios.post('http://localhost:3000/upload', {
+    //   imageUrl
+    // // });
+    // setLoading(false);
+    // setSelectedImage(image.data);
+    // console.log(image.data)
+  } catch (err) {
+    console.error('ERROR HAPPENING', err);
+  }
+}
+
   const handleSubmit = (e) => {
     e.preventDefault()
     setMessage("")
@@ -139,7 +194,13 @@ const DogForm = (props) => {
                 validations={[required]}
               />
             </FormGroup>
-
+            <ImageUpload 
+              handler={handleImageChange}
+              previewState={previewSelection}
+              preview={previewImageFile}
+              imageSubmit={handleSubmitImage}
+              upload={uploadImage}
+            />
             <FormGroup text='Link to Picture'>
               <Input
                 type="text"

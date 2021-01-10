@@ -5,69 +5,30 @@ import Input from 'react-validation/build/input'
 // Common componenets
 import FormGroup from './common/FormGroup'
 // import BtnSpinner from './common/BtnSpinner'
+// Cut methods into dogform. Set methods as a variable name to import to this component. When you want to call it, use variableName.bind(this, <the actual parameters of the function>.)
 
 
-const ImageUpload = () => {
-
-  const url= 'https://api.cloudinary.com/v1_1/sfx818fetchapp/image/upload'
-  const preset = 'nl04th0n'
-
+const ImageUpload = ({handler, preview, imageSubmit, previewState, upload}) => {
 
   const [selectedImage, setSelectedImage] = useState('');
-  const [previewSelection, setPreviewSelection] = useState('')
 
+ 
 
-  const handleChange = e => {
-    //sets image state to file selected by user
-    const imageFile = e.target.files[0]
-    previewImageFile(imageFile)
-  }
+    // console.log("HANDLER: ", handler)
+    // console.log("PREVIEW: ", preview)
+    // console.log("IMAGE SUBMIT: ", imageSubmit)
+    // console.log(upload)
 
-  // previews the selected image
-  const previewImageFile = (imageFile) => {
-    const reader = new FileReader()
-    reader.readAsDataURL(imageFile)
-    reader.onloadend = () => {
-      setPreviewSelection(reader.result)
-    }
-  }
-
-  const handleSubmitImage = (e) => {
-    console.log('submitting')
-    e.preventDefault()
-    if (!previewSelection) return
-    uploadImage(previewSelection)
-  }
-
-  const uploadImage = async (image) => {
-    const formData = new FormData();
-  formData.append('file', image);
-  formData.append('upload_preset', preset)
-  try {
-    const res = await axios.post(url, formData);
-    console.log('RES DATA:', res.data)
-    // const imageUrl = res.data.secure_url;
-    // const image = await axios.post('http://localhost:3000/upload', {
-    //   imageUrl
-    // // });
-    // setLoading(false);
-    // setSelectedImage(image.data);
-    // console.log(image.data)
-  } catch (err) {
-    console.error('ERROR HAPPENING', err);
-  }
-}
-  
 
   return (
     <div className='card card-container'>
-      <Form onSubmit={handleSubmitImage} >
+      <Form onSubmit={imageSubmit} >
         <FormGroup text='Upload a photo of your dog!'>
           <Input
             type="file"
             className="form-control"
             name="image" 
-            onChange={handleChange}
+            onChange={handler.bind(this)}
             value={selectedImage}
             // validations={[required]}
             />
@@ -76,9 +37,9 @@ const ImageUpload = () => {
           Upload Image
         </button>
       </Form>
-        {previewImageFile && (
+        {preview && (
           <img 
-          src={previewSelection}
+          src={previewState}
           alt='' 
           className='img-thumbnail'
           />
