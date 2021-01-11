@@ -24,7 +24,6 @@ const App = () => {
         <Route exact path={'/profile/edit'} component={EditProfile}/>
         <Route exact path={'/profile/dogs/new'} component={DogForm}/>
         <Route path={'/profile/dogs/:dogid'} component={DogProfile}/>
-        <Route path={'/imageupload'} component={ImageUpload}/>
       </Switch>
     </Layout>
   )
