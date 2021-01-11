@@ -35,7 +35,7 @@ const DogProfile = (props) => {
       return(
         <div><h1>Dog profile page {dogdata.name}</h1>
         <p>Breed: {dogdata.breed}</p>
-        <img alt="Your dog" src={dogdata.picture_url}/>
+        <img className='img-fluid' alt="Your dog" src={dogdata.picture_url}/>
         <button onClick={deleteDog} className="btn btn-danger">Delete {dogdata.name}</button>
       </div>
       )
