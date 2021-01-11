@@ -81,7 +81,6 @@ const DogForm = (props) => {
     )
 
   const handleChange = (e) =>{
-    console.log(e.target.value)
     setData({...data,[e.target.name]:e.target.value})
   }
 
@@ -115,7 +114,7 @@ const DogForm = (props) => {
   }
 
   const uploadImage = async (image) => {
-    const url= 'https://api.cloudinary.com/v1_1/sfx818fetchapp/image/upload'
+    const url= 'https://api.cloudinary.com/v1_1/sfx818fetchapp/image/upload/w_1000,h_1000,c_fill'
     const preset = 'nl04th0n'
     
     const formData = new FormData();
@@ -125,7 +124,7 @@ const DogForm = (props) => {
       const res = await axios.post(url, formData);
       console.log('RES DATA:', res.data)
       const imageUrl = res.data.secure_url;
-      // handleImageValue(imageUrl)
+      handleImageValue(imageUrl)
       // const image = await axios.post('http://localhost:3000/upload', {
       //   imageUrl
       // // });
@@ -137,17 +136,17 @@ const DogForm = (props) => {
     }
 }
 
-// const handleImageValue = (imageUrl) => {
-//   setData({picture_url: imageUrl})
-// }
+const handleImageValue = (imageUrl) => {
+  setData({picture_url: imageUrl})
+}
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log("starting", data)
+    console.log("starting", data.picture_url)
     setMessage("")
     // use the library to validate all fields on the form
     form.current.validateAll()
-    console.log("after validation", data)
+    console.log("after validation", data.picture_url)
     // check on ages and sizes
     if(data.min_age>data.max_age){
       setMessage("Min age must be less than max age")
@@ -161,7 +160,7 @@ const DogForm = (props) => {
     // check min_age lte max_age and same for size
     if(checkBtn.current.context._errors.length === 0){
       setLoading(false)
-      console.log('ABOUT TO PUSH IT:', data)
+      console.log('ABOUT TO PUSH IT:', data.picture_url)
       newUserDog(data).then((response)=>{
         setMessage(`Successfully added ${data.name}`)
         setSuccessful(true)
@@ -200,20 +199,20 @@ const DogForm = (props) => {
               />
             </FormGroup>
            {/* image upload component */}
-            {/* <ImageUpload 
+            <ImageUpload 
               handler={handleImageChange}
               previewState={previewSelection}
               preview={previewImageFile}
               imageState={selectedImage}
               imageSubmit={handleSubmitImage}
-            /> */}
+            />
             <FormGroup className='d-none' text=''>
               <Input
                 type="text"
-                className="form-control"
+                className="form-control d-none"
                 name="picture_url"
                 value={data.picture_url}
-                onChange={handleChange}
+                onChange={handleImageValue}
                 validations={[required,vurl]}
               />
             </FormGroup>
