@@ -114,7 +114,7 @@ const DogForm = (props) => {
   }
 
   const uploadImage = async (image) => {
-    const url= 'https://api.cloudinary.com/v1_1/sfx818fetchapp/image/upload/w_1000,h_1000,c_fill'
+    const url= 'https://api.cloudinary.com/v1_1/sfx818fetchapp/image/upload/'
     const preset = 'nl04th0n'
     
     const formData = new FormData();
@@ -125,12 +125,6 @@ const DogForm = (props) => {
       console.log('RES DATA:', res.data)
       const imageUrl = res.data.secure_url;
       handleImageValue(imageUrl)
-      // const image = await axios.post('http://localhost:3000/upload', {
-      //   imageUrl
-      // // });
-      // setLoading(false);
-      // setSelectedImage(image.data);
-      // console.log(image.data)
     } catch (err) {
       console.error('ERROR HAPPENING', err);
     }
