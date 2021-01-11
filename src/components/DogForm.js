@@ -6,6 +6,8 @@ import CheckButton from 'react-validation/build/button'
 import Select from 'react-validation/build/select'
 import ImageUpload from './ImageUpload'
 
+import ImageUpload from './ImageUpload'
+
 // Common components we made
 import FormGroup from './common/FormGroup'
 import BtnSpinner from './common/BtnSpinner'
@@ -35,6 +37,7 @@ const vurl = (value) => {
     )
   }
 }
+
 
 const textLengthBio = (value) => {
   if(value.length>500){
@@ -249,6 +252,7 @@ const handleImageValue = (imageUrl) => {
                 type="number"
                 className="form-control"
                 name="age"
+                min={0}
                 value={data.age}
                 onChange={handleChange}
                 validations={[required]}
@@ -278,6 +282,7 @@ const handleImageValue = (imageUrl) => {
                   type="number"
                   className="form-control"
                   name="min_age"
+                  min={0}
                   value={data.min_age}
                   onChange={handleChange}
                   validations={[required]}
@@ -289,6 +294,7 @@ const handleImageValue = (imageUrl) => {
                   type="number"
                   className="form-control"
                   name="max_age"
+                  min={0}
                   value={data.max_age}
                   onChange={handleChange}
                   validations={[required]}
