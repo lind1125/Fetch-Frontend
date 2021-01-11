@@ -30,11 +30,7 @@ const ImageUpload = ({handler, preview, imageSubmit, previewState}) => {
           <img 
           src={previewState}
           alt='' 
-<<<<<<< HEAD
           className='img-fluid rounded'
-=======
-          id='preview-image'
->>>>>>> 609ce894d21c1a7272934768acaa459780116057
           />
           )}
       </Form>
