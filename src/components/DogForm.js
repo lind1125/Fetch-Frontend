@@ -6,7 +6,6 @@ import CheckButton from 'react-validation/build/button'
 import Select from 'react-validation/build/select'
 import ImageUpload from './ImageUpload'
 
-import ImageUpload from './ImageUpload'
 
 // Common components we made
 import FormGroup from './common/FormGroup'

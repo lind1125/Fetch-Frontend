@@ -20,7 +20,6 @@ const ImageUpload = ({handler, preview, imageSubmit, previewState}) => {
             name="image" 
             onChange={handler.bind(this)}
             value={selectedImage}
-            validations={[required, vurl]}
             />
         </FormGroup>
         <button className='btn btn-primary btn-sm' type='button' onClick={imageSubmit.bind(this)}>
