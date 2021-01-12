@@ -18,3 +18,8 @@ export const newUserDog = (dogData) => {
   //console.log({dogData})
   return axios.post(API_URL+'profile/dogs',{...dogData},{headers:authHeader()})
 }
+
+
+export const getRandomDogs = (yourDogId) => {
+  return axios.get(`${API_URL}profile/dogs/${yourDogId}/dogs`,{headers:authHeader()})
+}
