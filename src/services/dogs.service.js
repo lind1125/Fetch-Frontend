@@ -23,3 +23,12 @@ export const newUserDog = (dogData) => {
 export const getRandomDogs = (yourDogId) => {
   return axios.get(`${API_URL}profile/dogs/${yourDogId}/dogs`,{headers:authHeader()})
 }
+
+
+export const rejectDog = (yourDogId, dogToReject) => {
+  return axios.put(`${API_URL}profile/dogs/${yourDogId}/reject`,{dogToReject},{headers:authHeader()})
+}
+
+export const likeDog = (yourDogId, dogToLike) => {
+  return axios.put(`${API_URL}profile/dogs/${yourDogId}/like`,{dogToLike},{headers:authHeader()})
+}
