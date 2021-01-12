@@ -1,8 +1,11 @@
 import React, {useState, useRef} from 'react';
+import axios from 'axios'
 import Form from 'react-validation/build/form'
 import Input from 'react-validation/build/input'
 import CheckButton from 'react-validation/build/button'
 import Select from 'react-validation/build/select'
+import ImageUpload from './ImageUpload'
+
 
 // Common components we made
 import FormGroup from './common/FormGroup'
@@ -34,6 +37,7 @@ const vurl = (value) => {
   }
 }
 
+
 const textLengthBio = (value) => {
   if(value.length>500){
     return (
@@ -59,7 +63,6 @@ const DogForm = (props) => {
   const form = useRef()
   const checkBtn = useRef()
 
-
   const [message,setMessage] = useState("")
   const [loading,setLoading] = useState(false)
   const [successful, setSuccessful] = useState(false)
@@ -83,11 +86,63 @@ const DogForm = (props) => {
     setData({...data,[e.target.name]:e.target.value})
   }
 
+// *** State for image uploader ***
+  const [previewSelection, setPreviewSelection] = useState('')
+  const [selectedImage, setSelectedImage] = useState('')
+
+  
+  // *** Functions for image uploader ***  
+  const handleImageChange = e => {
+    //sets image state to file selected by user
+    const imageFile = e.target.files[0]
+    previewImageFile(imageFile)
+  }
+
+  // previews the selected image
+  const previewImageFile = (imageFile) => {
+    const reader = new FileReader()
+    reader.readAsDataURL(imageFile)
+    reader.onloadend = () => {
+      setPreviewSelection(reader.result)
+    }
+  }
+
+
+  const handleSubmitImage = (e) => {
+    e.preventDefault()
+    console.log('E!!!!!!', e.target)
+    if (!previewSelection) return
+    uploadImage(previewSelection)
+  }
+
+  const uploadImage = async (image) => {
+    const url= 'https://api.cloudinary.com/v1_1/sfx818fetchapp/image/upload/'
+    const preset = 'nl04th0n'
+    
+    const formData = new FormData();
+    formData.append('file', image);
+    formData.append('upload_preset', preset)
+    try {
+      const res = await axios.post(url, formData);
+      console.log('RES DATA:', res.data)
+      const imageUrl = res.data.secure_url;
+      handleImageValue(imageUrl)
+    } catch (err) {
+      console.error('ERROR HAPPENING', err);
+    }
+}
+
+const handleImageValue = (imageUrl) => {
+  setData({picture_url: imageUrl})
+}
+
   const handleSubmit = (e) => {
     e.preventDefault()
+    console.log("starting", data.picture_url)
     setMessage("")
     // use the library to validate all fields on the form
     form.current.validateAll()
+    console.log("after validation", data.picture_url)
     // check on ages and sizes
     if(data.min_age>data.max_age){
       setMessage("Min age must be less than max age")
@@ -101,7 +156,7 @@ const DogForm = (props) => {
     // check min_age lte max_age and same for size
     if(checkBtn.current.context._errors.length === 0){
       setLoading(false)
-      console.log(data)
+      console.log('ABOUT TO PUSH IT:', data.picture_url)
       newUserDog(data).then((response)=>{
         setMessage(`Successfully added ${data.name}`)
         setSuccessful(true)
@@ -139,14 +194,21 @@ const DogForm = (props) => {
                 validations={[required]}
               />
             </FormGroup>
-
-            <FormGroup text='Link to Picture'>
+           {/* image upload component */}
+            <ImageUpload 
+              handler={handleImageChange}
+              previewState={previewSelection}
+              preview={previewImageFile}
+              imageState={selectedImage}
+              imageSubmit={handleSubmitImage}
+            />
+            <FormGroup className='d-none' text=''>
               <Input
                 type="text"
-                className="form-control"
+                className="form-control d-none"
                 name="picture_url"
                 value={data.picture_url}
-                onChange={handleChange}
+                onChange={handleImageValue}
                 validations={[required,vurl]}
               />
             </FormGroup>
@@ -189,6 +251,7 @@ const DogForm = (props) => {
                 type="number"
                 className="form-control"
                 name="age"
+                min={0}
                 value={data.age}
                 onChange={handleChange}
                 validations={[required]}
@@ -218,6 +281,7 @@ const DogForm = (props) => {
                   type="number"
                   className="form-control"
                   name="min_age"
+                  min={0}
                   value={data.min_age}
                   onChange={handleChange}
                   validations={[required]}
@@ -229,6 +293,7 @@ const DogForm = (props) => {
                   type="number"
                   className="form-control"
                   name="max_age"
+                  min={0}
                   value={data.max_age}
                   onChange={handleChange}
                   validations={[required]}
