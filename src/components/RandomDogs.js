@@ -22,12 +22,12 @@ const RandomDogs = (props) => {
   const swiped = (direction, idToDelete) => {
     console.log('removing: ' + idToDelete)
     setLastDirection(direction)
+    // Left is reject, Right is accept :)
   }
 
   const outOfFrame = (name) => {
     console.log(name + ' left the screen!')
   }
-  // Left is reject, Right is accept :)
 
   const handleClick = () => {
     setClicked(!clicked)
@@ -44,8 +44,20 @@ const RandomDogs = (props) => {
       <div className='cardContainer'>
         {dogs.map((dog) =>
           <TinderCard className='swipe' key={dog.name} onSwipe={(dir) => swiped(dir, dog._id)} onCardLeftScreen={() => outOfFrame(dog.name)}>
-            <div onClick={handleClick} style={{ backgroundImage: 'url(' + dog.picture_url + ')' }} className='card'>
-              {clicked?<div className="dogInfo"><h3>{dog.name}</h3><p>{dog.breed}</p></div> :<h3>{dog.name}</h3>}
+            <div
+              onClick={handleClick}
+              style={ clicked ? {backgroundImage:' linear-gradient(to top, rgba(30, 75, 115, 1), rgba(255, 255, 255, 0.4)), url(' + dog.picture_url + ')'}: {backgroundImage: 'url(' + dog.picture_url + ')' }}
+              className='card'>
+              {clicked?
+                <div className="doginfo">
+                  <h3>{dog.name}</h3>
+                  <p>Breed: {dog.breed}</p>
+                  <p>Age: {dog.age}</p>
+                  <p>Temperament: {dog.temperament}</p>
+                </div>
+                :
+                <div className="doginfo"><h3>{dog.name}</h3></div>
+              }
             </div>
           </TinderCard>
         )}

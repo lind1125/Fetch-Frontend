@@ -29,7 +29,7 @@
 
 }
 
-.card h3 {
+.card .doginfo {
   position: absolute;
   bottom: 0;
   margin: 10px;
