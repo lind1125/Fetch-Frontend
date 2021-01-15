@@ -8,7 +8,7 @@
   height: 300px;
 }
 
-.card {
+.tindercard {
   position: relative;
   background-color: #fff;
   width: 80vw;
@@ -29,7 +29,7 @@
 
 }
 
-.card .doginfo {
+.tindercard .doginfo {
   position: absolute;
   bottom: 0;
   margin: 10px;

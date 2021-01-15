@@ -14,8 +14,6 @@ export const getUserDog = (dogid) => {
 
 
 export const newUserDog = (dogData) => {
-  //console.log(...dogData)
-  //console.log({dogData})
   return axios.post(API_URL+'profile/dogs',{...dogData},{headers:authHeader()})
 }
 
