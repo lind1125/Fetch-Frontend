@@ -14,7 +14,19 @@ export const getUserDog = (dogid) => {
 
 
 export const newUserDog = (dogData) => {
-  //console.log(...dogData)
-  //console.log({dogData})
   return axios.post(API_URL+'profile/dogs',{...dogData},{headers:authHeader()})
+}
+
+
+export const getRandomDogs = (yourDogId) => {
+  return axios.get(`${API_URL}profile/dogs/${yourDogId}/dogs`,{headers:authHeader()})
+}
+
+
+export const rejectDog = (yourDogId, dogToReject) => {
+  return axios.put(`${API_URL}profile/dogs/${yourDogId}/reject`,{dogToReject},{headers:authHeader()})
+}
+
+export const likeDog = (yourDogId, dogToLike) => {
+  return axios.put(`${API_URL}profile/dogs/${yourDogId}/like`,{dogToLike},{headers:authHeader()})
 }
