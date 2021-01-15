@@ -20,9 +20,15 @@ const RandomDogs = (props) => {
   },[])
 
   const swiped = (direction, idToDelete) => {
+    setClicked(false)
     console.log('removing: ' + idToDelete)
     setLastDirection(direction)
     // Left is reject, Right is accept :)
+    if(direction==="left"){
+
+    } else if (direction==="right"){
+
+    }
   }
 
   const outOfFrame = (name) => {
