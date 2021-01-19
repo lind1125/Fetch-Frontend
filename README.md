@@ -1,4 +1,5 @@
-# Team-2-frontend
+# Team-2-Project
+## Fetch (frontend)
 
 [**Link to Backend Repo**](https://github.com/SFX818/Team-2-backend)
 
@@ -6,7 +7,7 @@
 
 ---
 
-## User Stories
+### User Stories
 
 * As a user, I want to sign up and create a personal acount
 * As a user, I want to select and set my location for the app
@@ -19,7 +20,7 @@
 
 ---
 
-## Technology Used
+### Technology Used
 
 * React
 * React Router
@@ -30,7 +31,7 @@
 
 ---
 
-## Installation Instructions
+### Installation Instructions
 1. npm i
 2. npm start
 
