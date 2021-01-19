@@ -4,6 +4,8 @@
 
 [**Link to Deployed App**](https://placekitten.com/)
 
+---
+
 ## User Stories
 
 * As a user, I want to sign up and create a personal acount
@@ -15,6 +17,8 @@
 * As a user, I want to swipe right to accept and swipe left to reject dogs served to me by the app
 * As a user, I want to see a list of accepted dogs that match my dog
 
+---
+
 ## Technology Used
 
 * React
@@ -24,6 +28,7 @@
 * [Cloudinary API](https://cloudinary.com/)
 * [react-tinder-card](https://github.com/3DJakob/react-tinder-card#readme)
 
+---
 
 ## Installation Instructions
 1. npm i
