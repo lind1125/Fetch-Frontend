@@ -6,6 +6,7 @@ import {getCurrentUser} from '../services/auth.service'
 import '../css/components/RandomDogs.css'
 
 const RandomDogs = (props) => {
+
   const [dogs, setDogs] = useState([])
   const [clicked, setClicked] = useState(false)
   const [lastDirection, setLastDirection] = useState()
@@ -14,6 +15,7 @@ const RandomDogs = (props) => {
   useEffect(()=>{
     if(getCurrentUser()){
       getRandomDogs(props.match.params.dogid).then(response=>{
+        console.log(response.data)
         setDogs(response.data)
       }).catch(err=>console.log(err))
     }
