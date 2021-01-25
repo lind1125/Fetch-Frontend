@@ -11,8 +11,6 @@ const DogMatches = (props) => {
   const [matches, setMatches] = useState([])
 
   useEffect(()=>{
-    // If user did not navigate to this page from their profile, make the get request
-      //make axios request to set dog data
       getMatches(props.match.params.dogid).then(response=>{
         console.log(response.data)
         setMatches(response.data)
@@ -27,12 +25,17 @@ const DogMatches = (props) => {
       return (
         <div>
           <h2>DOG MATCHES!</h2>
-          <p>{matches[0].name}</p>
-          </div>
-      )
-    }
-    
+          {matches.map(dog => {
+           return ( <div>
+              <img src={dog.picture_url} height='300px' />
+              <p>{dog.name}</p>
+            </div>
+           )
+          })}
+        </div>
+    )
   }
+}
 return display()
 }
 
