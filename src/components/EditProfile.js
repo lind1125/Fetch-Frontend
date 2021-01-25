@@ -107,7 +107,7 @@ const EditProfile = (props) => {
 
             <FormGroup text='location'>
               <Select  name='location' className="form-control" value={data.location} onChange={handleChange}validations={[required]}>
-                <option value='San Francisco, SF'>San Francisco</option>
+                <option value='San Francisco, CA'>San Francisco</option>
                 <option value='New York, NY'>New York</option>
                 <option value='Portland, OR'>Portland</option>
                 <option value='Houston, TX'>Houston</option>

@@ -2,6 +2,7 @@ import React, {useState, useRef} from 'react';
 import Form from 'react-validation/build/form'
 import Input from 'react-validation/build/input'
 import CheckButton from 'react-validation/build/button'
+import Select from 'react-validation/build/select'
 import validator from 'validator';
 // Common components we made
 import FormGroup from './common/FormGroup'
@@ -65,7 +66,7 @@ const Signup = (props) =>{
     // validator stores errrors and we can check if error exists
     if(checkBtn.current.context._errors.length === 0){
       // register the user
-      register(data.username, data.email, data.password).then((response)=>{
+      register(data.username, data.email, data.password, data.location).then((response)=>{
         setMessage(response.data.message)
         setSuccessful(true)
         // log them in after
@@ -129,6 +130,16 @@ const Signup = (props) =>{
               onChange={handleChange}
               validations={[required, vpassword]}
             />
+          </FormGroup>
+
+          <FormGroup text='location'>
+            <Select  name='location' className="form-control" value={data.location} onChange={handleChange}validations={[required]}>
+              <option value='San Francisco, CA'>San Francisco</option>
+              <option value='New York, NY'>New York</option>
+              <option value='Portland, OR'>Portland</option>
+              <option value='Houston, TX'>Houston</option>
+            </Select>
+
           </FormGroup>
 
           <BtnSpinner loading={successful} text="SignUp"/>

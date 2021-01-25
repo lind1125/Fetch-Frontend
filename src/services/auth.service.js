@@ -9,11 +9,12 @@ POST |	/api/signin |	login an account
 
 
 //function to register user
-export const register = (username, email, password) => {
+export const register = (username, email, password, location) => {
   return axios.post(API_URL+'signup', {
     username,
     email,
-    password
+    password,
+    location
   })
 }
 
