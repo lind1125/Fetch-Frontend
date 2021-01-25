@@ -6,7 +6,7 @@ import NotLoggedIn from './common/NotLoggedIn'
 
 // destructure props.location.state to have access on state
 const DogProfile = (props) => {
-
+  console.log(props.location.state)
   const currentUser = getCurrentUser() // from the header info, could probably pass down as props TODO
   const [dogdata, setDogdata] = useState(props.location.state && props.location.state.dog) // if accessing from the link, pull data from props.location.state.dog
 

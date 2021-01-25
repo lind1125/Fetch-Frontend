@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 import NotLoggedIn from './common/NotLoggedIn'
 
 const Profile = (props) =>{
+
   const currentUser = getCurrentUser() // from the header info
   const [data,setData] = useState({})
   const [dogs, setDogs] = useState([])
@@ -14,7 +15,7 @@ const Profile = (props) =>{
       getProfile().then(response=>{
         setData(response.data)
         setDogs(response.data.dogs)
-        // console.log(response.data)
+        console.log(response.data)
       })
     }
   },[])
@@ -38,15 +39,8 @@ const Profile = (props) =>{
           <header className='jumbotron'>
             <h3>
               <strong>{currentUser.username}</strong>
-              {data.username}
             </h3>
           </header>
-          <p>
-            <strong>
-            Token:
-          </strong>
-          {currentUser.accessToken.substring(0,20)}...
-          </p>
           <p>Username: {data.username}</p>
           <p>City: {data.location}</p>
           <p>Email: {data.email}</p>
