@@ -38,6 +38,7 @@ const DogProfile = (props) => {
         <img className='img-fluid' alt="Your dog" src={dogdata.picture_url}/>
         <button onClick={deleteDog} className="btn btn-danger">Delete {dogdata.name}</button>
         <Link to={{pathname:`/profile/dogs/${dogdata._id}/dogs`}} className="btn btn-primary">Find Some Doggie Friends</Link>
+        <Link to={{pathname:`/profile/dogs/${dogdata._id}/matches`}} className="btn btn-primary">See Your Matches</Link>
       </div>
       )
     } else {
