@@ -183,6 +183,8 @@ const handleImageValue = (imageUrl) => {
                 validations={[required]}
               />
             </FormGroup>
+            <p>Current Photo:</p>
+           <img src={data.picture_url} height='200px'/>
            {/* image upload component */}
             <ImageUpload 
               handler={handleImageChange}
