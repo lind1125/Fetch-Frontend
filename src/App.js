@@ -6,6 +6,7 @@ import Signup from './components/Signup'
 import Profile from './components/Profile'
 import EditProfile from './components/EditProfile'
 import DogProfile from './components/DogProfile'
+import EditDog from './components/EditDog'
 import DogForm from './components/DogForm'
 import DogMatches from './components/DogMatches'
 
@@ -28,6 +29,7 @@ const App = () => {
         <Route exact path={'/profile/dogs/new'} component={DogForm}/>
         <Route path={'/profile/dogs/:dogid/dogs'} component={RandomDogs}/>
         <Route path={'/profile/dogs/:dogid/matches'} component={DogMatches}/>
+        <Route path={'/profile/dogs/:dogid/edit'} component={EditDog}/>
         
         <Route path={'/profile/dogs/:dogid'} component={DogProfile}/>
       </Switch>
