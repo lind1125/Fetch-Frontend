@@ -90,8 +90,8 @@ const DogForm = (props) => {
   const [previewSelection, setPreviewSelection] = useState('')
   const [selectedImage, setSelectedImage] = useState('')
 
-  
-  // *** Functions for image uploader ***  
+
+  // *** Functions for image uploader ***
   const handleImageChange = e => {
     //sets image state to file selected by user
     const imageFile = e.target.files[0]
@@ -118,7 +118,7 @@ const DogForm = (props) => {
   const uploadImage = async (image) => {
     const url= 'https://api.cloudinary.com/v1_1/sfx818fetchapp/image/upload/'
     const preset = 'nl04th0n'
-    
+
     const formData = new FormData();
     formData.append('file', image);
     formData.append('upload_preset', preset)
@@ -133,7 +133,7 @@ const DogForm = (props) => {
 }
 
 const handleImageValue = (imageUrl) => {
-  setData({picture_url: imageUrl})
+  setData({...data, picture_url: imageUrl})
 }
 
   const handleSubmit = (e) => {
@@ -195,7 +195,7 @@ const handleImageValue = (imageUrl) => {
               />
             </FormGroup>
            {/* image upload component */}
-            <ImageUpload 
+            <ImageUpload
               handler={handleImageChange}
               previewState={previewSelection}
               preview={previewImageFile}
