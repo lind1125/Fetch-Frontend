@@ -2,16 +2,18 @@ import React, {useState,useEffect} from 'react';
 import {getCurrentUser} from '../services/auth.service'
 import { getMatches } from '../services/dogs.service'
 import NotLoggedIn from './common/NotLoggedIn'
+import {Link} from 'react-router-dom'
+
 
 const DogMatches = (props) => {
 
-  console.log(props.match.params.dogid)
+  const dogId = props.match.params.dogid
   const currentUser = getCurrentUser()
   console.log('CURRENT USER: ', currentUser.id)
   const [matches, setMatches] = useState([])
 
   useEffect(()=>{
-      getMatches(props.match.params.dogid).then(response=>{
+      getMatches(dogId).then(response=>{
         console.log(response.data)
         setMatches(response.data)
       })
@@ -32,6 +34,7 @@ const DogMatches = (props) => {
             </div>
            )
           })}
+          <Link to={{pathname:`/profile/dogs/${dogId}`}} className="btn btn-primary">Back</Link>
         </div>
     )
   }
