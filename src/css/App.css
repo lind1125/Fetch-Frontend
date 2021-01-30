@@ -6,6 +6,14 @@ label {
   display: block;
   margin-top: 10px;
 }
+
+hr{
+  width: 400px;
+  border-top: 1px solid rgba(#ebaa93, 0.8);
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  margin-top: 40px;
+}
+
 .card-container.card {
   max-width: 350px !important;
   padding: 40px 40px;
@@ -23,10 +31,11 @@ label {
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
 .profile-img-card {
-  width: 96px;
-  height: 96px;
-  margin: 0 auto 10px;
-  display: block;
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+
+  display: inline-block;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   border-radius: 50%;
@@ -34,4 +43,48 @@ label {
 
 #preview-image {
   height: 300px;
+}
+.text-input{
+  background-color: #ECECEC;
+  outline: none;
+  border-radius: .1rem
+}
+.text-input::placeholder{
+  color: #EAA992;
+}
+
+.text-input:focus{
+  background-color: #ECECEC;
+  outline: none;
+  border-color: #DDDDDD;
+  box-shadow: none;
+}
+
+.fetch-btn{
+    color: #EAA992;
+    background-color: #ECECEC;
+    border-radius: 0.1rem;
+    display: block;
+    margin: 10px auto;
+    width: 40%;
+}
+.fetch-btn:hover{
+  color: #F15A24
+}
+
+.delete-btn{
+    color: #eb8181;
+    background-color: rgba(168, 41, 41, 0.2);
+    border-radius: 0.1rem;
+    display: block;
+    margin: 10px auto;
+
+}
+.delete-btn:hover{
+  color: #f12424
+}
+
+.orange-bold{
+  color: #F15A24;
+  font-weight: 600;
 }

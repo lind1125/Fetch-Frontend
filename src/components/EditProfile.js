@@ -12,6 +12,7 @@ import NotLoggedIn from './common/NotLoggedIn'
 
 import {resMessage} from '../utils/functions.utils'
 import {getProfile, editProfile } from '../services/user.service'
+import logo from '../css/images/Fetch_Logo_7.png'
 
 const required = (value) => {
   if(!value){
@@ -62,11 +63,10 @@ const EditProfile = (props) => {
     form.current.validateAll()
     if(checkBtn.current.context._errors.length === 0){
       setSuccessful(true)
-      // register the user
-      console.log(data)
+      // edit the user
       editProfile(data.email, data.location).then((response)=>{
         setMessage('Successfully edited your profile')
-        setSuccessful(false)
+
         setTimeout(()=>{
           props.history.push('/profile')
         },200)
@@ -90,15 +90,17 @@ const EditProfile = (props) => {
       <h1> Edit your profile </h1>
         <div className="card card-container">
           <img
-            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-            alt="profile-img"
-            className="profile-img-card"
+            src={logo}
+            alt="fetch-img"
+            className="mb-5"
           />
           <Form onSubmit={handleEditProfile} ref={form}>
-            <FormGroup text='email'>
+            <FormGroup>
+            <label class="sr-only" for="email">Email</label>
               <Input
                 type="text"
-                className="form-control"
+
+                className="form-control text-input"
                 name="email"
                 value={data.email}
                 onChange={handleChange}
@@ -106,15 +108,19 @@ const EditProfile = (props) => {
               />
             </FormGroup>
 
-            <FormGroup text='location'>
-              <Select  name='location' className="form-control" value={data.location} onChange={handleChange}validations={[required]}>
+            <div className="form-group">
+              <div className="row">
+
+              <label for="location" className="col-md-4">Location: </label>
+              <Select  name='location' className="form-control text-input ml-md-3" value={data.location} onChange={handleChange}validations={[required]}>
                 <option value='San Francisco, CA'>San Francisco</option>
                 <option value='New York, NY'>New York</option>
                 <option value='Portland, OR'>Portland</option>
                 <option value='Houston, TX'>Houston</option>
               </Select>
+              </div>
+            </div>
 
-            </FormGroup>
             <BtnSpinner loading={successful} text="Edit Profile"/>
 
            {message && (

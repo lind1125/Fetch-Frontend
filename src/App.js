@@ -16,6 +16,7 @@ import RandomDogs from './components/RandomDogs'
 // HOC which wraps around other Components
 import Layout from './components/common/Layout'
 // CSS imports
+import "bootstrap/dist/css/bootstrap.min.css"
 import "./css/App.css";
 
 // Icon library
@@ -38,7 +39,7 @@ const App = () => {
         <Route path={'/profile/dogs/:dogid/dogs'} component={RandomDogs}/>
         <Route path={'/profile/dogs/:dogid/matches'} component={DogMatches}/>
         <Route path={'/profile/dogs/:dogid/edit'} component={EditDog}/>
-        
+
 
         <Route path={'/profile/dogs/:dogid'} component={DogProfile}/>
         <Route path={'*'} component={FourOFour}/>
