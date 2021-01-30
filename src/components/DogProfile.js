@@ -47,7 +47,8 @@ const DogProfile = (props) => {
     if(dogdata){
       console.log(dogdata)
       return(
-        <div><h1>Dog profile page {dogdata.name}</h1>
+        <div>
+          <h1 className="text-center">{dogdata.name}</h1>
         <div className="wrapper">
           <img className="dog_profile_img" alt="Your dog" src={dogdata.picture_url}/>
           <span className="delete-icon">
@@ -70,10 +71,10 @@ const DogProfile = (props) => {
           <p>Temperament: <span className="orange-bold">{dogdata.temperament}</span></p>
           <p>Age: <span className="orange-bold">{dogdata.age}</span></p>
           <p>Size: <span className="orange-bold">{sizeNumToText(dogdata.size)}</span></p>
-
+          <hr/>
+          <Link to={{pathname:`/profile/dogs/${dogdata._id}/dogs`}} className="fetch-btn">Find Some Doggie Friends</Link>
+          <Link to={{pathname:`/profile/dogs/${dogdata._id}/matches`}} className="fetch-btn">See {dogdata.name}'s' Matches</Link>
         </div>
-        <Link to={{pathname:`/profile/dogs/${dogdata._id}/dogs`}} className="btn btn-primary">Find Some Doggie Friends</Link>
-        <Link to={{pathname:`/profile/dogs/${dogdata._id}/matches`}} className="btn btn-primary">See Your Matches</Link>
 
 
       </div>
