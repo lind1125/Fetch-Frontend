@@ -102,6 +102,7 @@ const Signup = (props) =>{
         />
         <Form onSubmit={handleSignup} ref={form}>
           <FormGroup>
+          <label class="sr-only" for="username">Username</label>
             <Input
               type="text"
               className="form-control text-input"
@@ -114,6 +115,7 @@ const Signup = (props) =>{
           </FormGroup>
 
           <FormGroup >
+            <label class="sr-only" for="email">Email Address</label>
             <Input
               type="text"
               placeholder="Email Address"
@@ -126,6 +128,7 @@ const Signup = (props) =>{
           </FormGroup>
 
           <FormGroup>
+            <label class="sr-only" for="password">Password</label>
             <Input
               type="password"
               placeholder="Password"

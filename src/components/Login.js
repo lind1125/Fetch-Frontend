@@ -68,6 +68,7 @@ const Login = (props) => {
       />
       <Form onSubmit={handleLogin} ref={form} className="mt-5">
         <FormGroup >
+        <label class="sr-only" for="username">Username</label>
           <Input
             placeholder="Username"
             type="text"
@@ -79,6 +80,7 @@ const Login = (props) => {
           />
         </FormGroup>
         <FormGroup>
+        <label class="sr-only" for="password">Password</label>
           <Input
             placeholder="Password"
             type="password"
