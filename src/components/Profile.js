@@ -36,14 +36,14 @@ const Profile = (props) =>{
        <NotLoggedIn/>
      :  (
         <div className="container">
+        <h3>
+        <strong>{currentUser.username}</strong>
+        </h3>
           <header className='jumbotron'>
-            <h3>
-              <strong>{currentUser.username}</strong>
-            </h3>
-          </header>
-          <p>Username: {data.username}</p>
           <p>City: {data.location}</p>
           <p>Email: {data.email}</p>
+          </header>
+          
           <p>Dogs:</p>
           {dogs?<ul>
             {dogs.map(dog=>{
