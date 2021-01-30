@@ -58,13 +58,13 @@ const Layout = (props) => {
             <li className="nav-item">
               <Link to={'/profile'} className="nav-link">
                 {currentUser.username}
-              <FontAwesomeIcon icon={['fas', 'user']} />
+              <FontAwesomeIcon className='ml-2' icon={['fas', 'user']} />
               </Link>
             </li>
             <li className="nav-item">
               <a  href="/" className="nav-link" onClick={logOut}>
                 Log out
-                <FontAwesomeIcon icon={['fas', 'user-slash']} />
+                <FontAwesomeIcon className='ml-2' icon={['fas', 'user-slash']} />
               </a>
             </li>
           </div> : (
@@ -72,13 +72,13 @@ const Layout = (props) => {
               <li className="nav-item">
                 <Link to={'/login'} className="nav-link">
                   Login
-                  <FontAwesomeIcon icon={['far', 'user']} />
+                  <FontAwesomeIcon className='ml-2' icon={['far', 'user']} />
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to={'/signup'} className="nav-link">
                   Signup
-                <FontAwesomeIcon icon={['fas', 'user-plus']} />
+                <FontAwesomeIcon className='ml-2' icon={['fas', 'user-plus']} />
                 </Link>
               </li>
           </div>)}
