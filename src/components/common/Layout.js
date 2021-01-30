@@ -32,7 +32,7 @@ const Layout = (props) => {
         </li>
 
 
-        {
+        {/* {
           currentUser && (
             <li className="nav-item">
               <Link to={"/profile"} className="nav-link">
@@ -40,7 +40,7 @@ const Layout = (props) => {
                 </Link>
             </li>
           )
-        }
+        } */}
 
       </div>
 
@@ -54,9 +54,9 @@ const Layout = (props) => {
             </li>
             <li className="nav-item">
               <a  href="/" className="nav-link" onClick={logOut}>
-                
                 Log out
-                </a>
+                <FontAwesomeIcon icon={['fas', 'user-slash']} />
+              </a>
             </li>
           </div> : (
             <div className="navbar-nav ml-auto">
