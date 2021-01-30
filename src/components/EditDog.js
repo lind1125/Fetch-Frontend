@@ -69,7 +69,6 @@ const DogForm = (props) => {
   const [loading,setLoading] = useState(false)
   const [successful, setSuccessful] = useState(false)
   const [data,setData] = useState(currentDogData)
-
   const handleChange = (e) =>{
     setData({...data,[e.target.name]:e.target.value})
   }
@@ -78,8 +77,8 @@ const DogForm = (props) => {
   const [previewSelection, setPreviewSelection] = useState('')
   const [selectedImage, setSelectedImage] = useState('')
 
-  
-  // *** Functions for image uploader ***  
+
+  // *** Functions for image uploader ***
   const handleImageChange = e => {
     //sets image state to file selected by user
     const imageFile = e.target.files[0]
@@ -106,7 +105,7 @@ const DogForm = (props) => {
   const uploadImage = async (image) => {
     const url= 'https://api.cloudinary.com/v1_1/sfx818fetchapp/image/upload/'
     const preset = 'nl04th0n'
-    
+
     const formData = new FormData();
     formData.append('file', image);
     formData.append('upload_preset', preset)
@@ -185,7 +184,7 @@ const handleImageValue = (imageUrl) => {
             <p>Current Photo:</p>
            <img src={data.picture_url} height='200px'/>
            {/* image upload component */}
-            <ImageUpload 
+            <ImageUpload
               handler={handleImageChange}
               previewState={previewSelection}
               preview={previewImageFile}
@@ -272,7 +271,7 @@ const handleImageValue = (imageUrl) => {
                   className="form-control"
                   name="min_age"
                   min={0}
-                  value={data.min_age}
+                  value={data.preferences.min_age}
                   onChange={handleChange}
                   validations={[required]}
                 />
@@ -284,7 +283,7 @@ const handleImageValue = (imageUrl) => {
                   className="form-control"
                   name="max_age"
                   min={0}
-                  value={data.max_age}
+                  value={data.preferences.max_age}
                   onChange={handleChange}
                   validations={[required]}
                 />
@@ -295,7 +294,7 @@ const handleImageValue = (imageUrl) => {
                 <Select
                   className="form-control"
                   name="min_size"
-                  value={data.min_size}
+                  value={data.preferences.min_size}
                   onChange={handleChange}
                   validations={[required]}>
                   <option value='1'>Small</option>
@@ -309,7 +308,7 @@ const handleImageValue = (imageUrl) => {
                 <Select
                   className="form-control"
                   name="max_size"
-                  value={data.max_size}
+                  value={data.preferences.max_size}
                   onChange={handleChange}
                   validations={[required]}>
                   <option value='1'>Small</option>
