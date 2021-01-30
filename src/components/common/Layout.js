@@ -1,6 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom'
 import {getCurrentUser, logout} from '../../services/auth.service'
+import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import icon from '../../css/images/Fetch_Paw_1.png'
+
+
 const Layout = (props) => {
 
   const [currentUser, setCurrentUser] = useState(undefined)
@@ -23,20 +27,29 @@ const Layout = (props) => {
   return (
   <div>
     <nav className="navbar navbar-expand navbar-dark bg-dark">
-      <Link to="/" className="navbar-brand">Cool Site</Link>
+      <Link to="/" className="navbar-brand">
+        <img 
+          src={icon} 
+          className='rounded-circle'
+          width='35px'
+          height='35px' 
+        />
+        </Link>
       <div className="navbar-nav mr-auto">
         <li className="nav-item">
           <Link to={"/home"} className="nav-link">Home</Link>
         </li>
 
 
-        {
+        {/* {
           currentUser && (
             <li className="nav-item">
-              <Link to={"/profile"} className="nav-link">Profile</Link>
+              <Link to={"/profile"} className="nav-link">
+                Profile
+                </Link>
             </li>
           )
-        }
+        } */}
 
       </div>
 
@@ -45,21 +58,27 @@ const Layout = (props) => {
             <li className="nav-item">
               <Link to={'/profile'} className="nav-link">
                 {currentUser.username}
+              <FontAwesomeIcon icon={['fas', 'user']} />
               </Link>
             </li>
             <li className="nav-item">
-              <a  href="/" className="nav-link" onClick={logOut}>Log out</a>
+              <a  href="/" className="nav-link" onClick={logOut}>
+                Log out
+                <FontAwesomeIcon icon={['fas', 'user-slash']} />
+              </a>
             </li>
           </div> : (
             <div className="navbar-nav ml-auto">
               <li className="nav-item">
                 <Link to={'/login'} className="nav-link">
                   Login
+                  <FontAwesomeIcon icon={['far', 'user']} />
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to={'/signup'} className="nav-link">
                   Signup
+                <FontAwesomeIcon icon={['fas', 'user-plus']} />
                 </Link>
               </li>
           </div>)}

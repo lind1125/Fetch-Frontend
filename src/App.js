@@ -1,4 +1,5 @@
 import {Switch, Route} from "react-router-dom"
+
 // Components imports
 import Home from './components/Home'
 import Login from './components/Login'
@@ -6,6 +7,7 @@ import Signup from './components/Signup'
 import Profile from './components/Profile'
 import EditProfile from './components/EditProfile'
 import DogProfile from './components/DogProfile'
+import EditDog from './components/EditDog'
 import DogForm from './components/DogForm'
 import DogMatches from './components/DogMatches'
 import FourOFour from './components/FourOFour'
@@ -15,6 +17,13 @@ import RandomDogs from './components/RandomDogs'
 import Layout from './components/common/Layout'
 // CSS imports
 import "./css/App.css";
+
+// Icon library
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { far } from '@fortawesome/free-regular-svg-icons'
+
+library.add(fas, far)
 
 const App = () => {
   return (
@@ -28,6 +37,8 @@ const App = () => {
         <Route exact path={'/profile/dogs/new'} component={DogForm}/>
         <Route path={'/profile/dogs/:dogid/dogs'} component={RandomDogs}/>
         <Route path={'/profile/dogs/:dogid/matches'} component={DogMatches}/>
+        <Route path={'/profile/dogs/:dogid/edit'} component={EditDog}/>
+        
 
         <Route path={'/profile/dogs/:dogid'} component={DogProfile}/>
         <Route path={'*'} component={FourOFour}/>

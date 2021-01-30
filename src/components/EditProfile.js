@@ -63,6 +63,7 @@ const EditProfile = (props) => {
     if(checkBtn.current.context._errors.length === 0){
       setSuccessful(true)
       // register the user
+      console.log(data)
       editProfile(data.email, data.location).then((response)=>{
         setMessage('Successfully edited your profile')
         setSuccessful(false)

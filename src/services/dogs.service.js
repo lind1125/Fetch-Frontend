@@ -11,10 +11,13 @@ export const deleteUserDog = (dogid) => {
 export const getUserDog = (dogid) => {
   return axios.get(API_URL+'profile/dogs/'+dogid,{headers:authHeader()})
 }
+export const updateDog = (dogid, dogData) => {
+  return axios.put(API_URL+'profile/dogs/'+dogid,{...dogData},{headers:authHeader()})
+}
+
 export const getMatches = (dogid) => {
   return axios.get(API_URL+'profile/dogs/'+dogid+'/matches',{headers:authHeader()})
 }
-
 
 export const newUserDog = (dogData) => {
   return axios.post(API_URL+'profile/dogs',{...dogData},{headers:authHeader()})
