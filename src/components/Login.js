@@ -8,6 +8,8 @@ import BtnSpinner from './common/BtnSpinner'
 // helper
 import { login } from '../services/auth.service'
 import {resMessage} from '../utils/functions.utils'
+import logo from '../css/images/Fetch_Logo_7.png'
+
 
 const required = (value) => {
   if(!value){
@@ -60,25 +62,27 @@ const Login = (props) => {
   <div className="col-md-12">
     <div className="card card-container">
       <img
-        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-        alt="profile-img"
-        className="profile-img-card"
+        src={logo}
+        alt="fetch-img"
+        className="mb-5"
       />
-      <Form onSubmit={handleLogin} ref={form}>
-        <FormGroup text='username'>
+      <Form onSubmit={handleLogin} ref={form} className="mt-5">
+        <FormGroup >
           <Input
+            placeholder="Username"
             type="text"
-            className="form-control"
+            className="text-input form-control "
             name="username"
             value={data.username}
             onChange={handleChange}
             validations={[required]}
           />
         </FormGroup>
-        <FormGroup text='password'>
+        <FormGroup>
           <Input
+            placeholder="Password"
             type="password"
-            className="form-control"
+            className="form-control text-input"
             name="password"
             value={data.password}
             onChange={handleChange}

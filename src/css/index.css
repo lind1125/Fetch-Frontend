@@ -11,3 +11,31 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.text-input{
+  background-color: #ECECEC;
+  outline: none;
+  border-radius: .1rem
+}
+.text-input::placeholder{
+  color: #EAA992;
+}
+
+.text-input:focus{
+  background-color: #ECECEC;
+  outline: none;
+  border-color: #DDDDDD;
+  box-shadow: none;
+}
+
+.fetch-btn{
+    color: #EAA992;
+    background-color: #ECECEC;
+    border-radius: 0.1rem;
+    display: block;
+    margin: 10px auto;
+    width: 40%;
+}
+.fetch-btn:hover{
+  color: #F15A24
+}
