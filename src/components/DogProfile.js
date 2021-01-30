@@ -26,6 +26,20 @@ const DogProfile = (props) => {
     window.location.reload()
   }
 
+  const sizeNumToText = (num) => {
+    switch (num){
+      case 1:
+        return 'Small'
+      case 2:
+        return 'Medium'
+      case 3:
+        return 'Large'
+      default:
+        return undefined
+    }
+
+  }
+
   const display = () => {
     if(!currentUser){
       return <NotLoggedIn/>
@@ -34,8 +48,16 @@ const DogProfile = (props) => {
       console.log(dogdata)
       return(
         <div><h1>Dog profile page {dogdata.name}</h1>
-        <p>Breed: {dogdata.breed}</p>
         <img className='img-fluid' alt="Your dog" src={dogdata.picture_url}/>
+        <div className="jumbotron">
+          <h3>About Me:</h3>
+          <p>{dogdata.biography}</p>
+          <p>Breed: <span className="orange-bold">{dogdata.breed}</span></p>
+          <p>Temperament: <span className="orange-bold">{dogdata.temperament}</span></p>
+          <p>Age: <span className="orange-bold">{dogdata.age}</span></p>
+          <p>Size: <span className="orange-bold">{sizeNumToText(dogdata.size)}</span></p>
+
+        </div>
         <button onClick={deleteDog} className="btn btn-danger">Delete {dogdata.name}</button>
         <Link to={{pathname:`/profile/dogs/${dogdata._id}/dogs`}} className="btn btn-primary">Find Some Doggie Friends</Link>
         <Link to={{pathname:`/profile/dogs/${dogdata._id}/matches`}} className="btn btn-primary">See Your Matches</Link>
