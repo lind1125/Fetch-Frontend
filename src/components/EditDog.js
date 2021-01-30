@@ -14,7 +14,7 @@ import NotLoggedIn from './common/NotLoggedIn'
 // helpers
 import {resMessage} from '../utils/functions.utils'
 import {getCurrentUser} from '../services/auth.service'
-import {newUserDog} from '../services/dogs.service.js'
+import {updateDog} from '../services/dogs.service.js'
 
 const required = (value) => {
   if(!value){
@@ -61,7 +61,6 @@ const textLengthTemp = (value) => {
 
 const DogForm = (props) => {
   const currentDogData = props.location.state
-  console.log(currentDogData)
 
   const form = useRef()
   const checkBtn = useRef()
@@ -127,7 +126,7 @@ const handleImageValue = (imageUrl) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log("starting", data.picture_url)
+    console.log('FRONTEND DATA: ', data)
     setMessage("")
     // use the library to validate all fields on the form
     form.current.validateAll()
@@ -145,9 +144,9 @@ const handleImageValue = (imageUrl) => {
     // check min_age lte max_age and same for size
     if(checkBtn.current.context._errors.length === 0){
       setLoading(false)
-      console.log('ABOUT TO PUSH IT:', data.picture_url)
-      newUserDog(data).then((response)=>{
-        setMessage(`Successfully added ${data.name}`)
+      console.log(data)
+      updateDog(props.match.params.dogid,data).then((response)=>{
+        setMessage(`Successfully updated ${data.name}`)
         setSuccessful(true)
         setLoading(false)
         setTimeout(()=>{
@@ -323,7 +322,7 @@ const handleImageValue = (imageUrl) => {
 
 
 
-            <BtnSpinner loading={loading} text="Create Dog"/>
+            <BtnSpinner loading={loading} text="Update Dog"/>
 
            {message && (
                <div className='form-group'>
