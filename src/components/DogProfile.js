@@ -3,7 +3,7 @@ import {getCurrentUser} from '../services/auth.service'
 import {Link} from 'react-router-dom'
 import {deleteUserDog, getUserDog} from '../services/dogs.service.js'
 import NotLoggedIn from './common/NotLoggedIn'
-
+import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 // destructure props.location.state to have access on state
 const DogProfile = (props) => {
   console.log(props.location.state)
@@ -47,8 +47,23 @@ const DogProfile = (props) => {
     if(dogdata){
       console.log(dogdata)
       return(
-        <div><h1>Dog profile page {dogdata.name}</h1>
-        <img className='img-fluid' alt="Your dog" src={dogdata.picture_url}/>
+        <div>
+          <h1 className="text-center">{dogdata.name}</h1>
+        <div className="wrapper">
+          <img className="dog_profile_img" alt="Your dog" src={dogdata.picture_url}/>
+          <span className="delete-icon">
+            <FontAwesomeIcon onClick={deleteDog} className="text-danger " icon={['fas', 'trash']} size="1x"/>
+
+          </span>
+          <span className="edit-icon ">
+            <Link to={{pathname:`/profile/dogs/${dogdata._id}/edit`, state:{...dogdata}}}>
+
+            <FontAwesomeIcon  className="orange-bold" icon={['fas', 'edit']} size="1x"/>
+          </Link>
+
+          </span>
+
+        </div>
         <div className="jumbotron">
           <h3>About Me:</h3>
           <p>{dogdata.biography}</p>
@@ -56,12 +71,11 @@ const DogProfile = (props) => {
           <p>Temperament: <span className="orange-bold">{dogdata.temperament}</span></p>
           <p>Age: <span className="orange-bold">{dogdata.age}</span></p>
           <p>Size: <span className="orange-bold">{sizeNumToText(dogdata.size)}</span></p>
-
+          <hr/>
+          <Link to={{pathname:`/profile/dogs/${dogdata._id}/dogs`}} className="fetch-btn">Find Some Doggie Friends</Link>
+          <Link to={{pathname:`/profile/dogs/${dogdata._id}/matches`}} className="fetch-btn">See {dogdata.name}'s' Matches</Link>
         </div>
-        <button onClick={deleteDog} className="btn btn-danger">Delete {dogdata.name}</button>
-        <Link to={{pathname:`/profile/dogs/${dogdata._id}/dogs`}} className="btn btn-primary">Find Some Doggie Friends</Link>
-        <Link to={{pathname:`/profile/dogs/${dogdata._id}/matches`}} className="btn btn-primary">See Your Matches</Link>
-        <Link to={{pathname:`/profile/dogs/${dogdata._id}/edit`, state:{...dogdata}}} className="btn btn-primary">Edit Profile</Link>
+
 
       </div>
       )
