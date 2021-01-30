@@ -121,7 +121,7 @@ const DogForm = (props) => {
 }
 
 const handleImageValue = (imageUrl) => {
-  setData({picture_url: imageUrl})
+  setData({...data, picture_url: imageUrl})
 }
 
   const handleSubmit = (e) => {
