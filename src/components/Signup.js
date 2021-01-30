@@ -137,15 +137,18 @@ const Signup = (props) =>{
             />
           </FormGroup>
 
-          <FormGroup text='location'>
+          <div className="form-group">
+            <div className="row">
+            <div className="col-md-1"></div>
+            <label for="location" className="col-md-4">Location: </label>
             <Select  placeholder="Location" name='location' className="form-control text-input" value={data.location} onChange={handleChange}validations={[required]}>
               <option value='San Francisco, CA'>San Francisco</option>
               <option value='New York, NY'>New York</option>
               <option value='Portland, OR'>Portland</option>
               <option value='Houston, TX'>Houston</option>
             </Select>
-
-          </FormGroup>
+            </div>
+          </div>
 
           <BtnSpinner loading={successful} text="Sign Up"/>
 
