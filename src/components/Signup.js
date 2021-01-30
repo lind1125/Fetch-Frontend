@@ -11,6 +11,8 @@ import BtnSpinner from './common/BtnSpinner'
 import {resMessage} from '../utils/functions.utils'
 import { register, login } from '../services/auth.service'
 
+import logo from '../css/images/Fetch_Logo_7.png'
+
 const required = (value) => {
   if(!value){
     return (
@@ -94,26 +96,28 @@ const Signup = (props) =>{
     <div className="col-md-12">
       <div className="card card-container">
         <img
-          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-          alt="profile-img"
-          className="profile-img-card"
+          src={logo}
+          alt="fetch-img"
+          className="mb-5"
         />
         <Form onSubmit={handleSignup} ref={form}>
-          <FormGroup text='username'>
+          <FormGroup>
             <Input
               type="text"
-              className="form-control"
+              className="form-control text-input"
               name="username"
+              placeholder="Username"
               value={data.username}
               onChange={handleChange}
               validations={[required, vusername]}
             />
           </FormGroup>
 
-          <FormGroup text='email'>
+          <FormGroup >
             <Input
               type="text"
-              className="form-control"
+              placeholder="Email Address"
+              className="form-control text-input"
               name="email"
               value={data.email}
               onChange={handleChange}
@@ -121,10 +125,11 @@ const Signup = (props) =>{
             />
           </FormGroup>
 
-          <FormGroup text='password'>
+          <FormGroup>
             <Input
               type="password"
-              className="form-control"
+              placeholder="Password"
+              className="form-control text-input"
               name="password"
               value={data.password}
               onChange={handleChange}
@@ -132,17 +137,20 @@ const Signup = (props) =>{
             />
           </FormGroup>
 
-          <FormGroup text='location'>
-            <Select  name='location' className="form-control" value={data.location} onChange={handleChange}validations={[required]}>
+          <div className="form-group">
+            <div className="row">
+            <div className="col-md-1"></div>
+            <label for="location" className="col-md-4">Location: </label>
+            <Select  placeholder="Location" name='location' className="form-control text-input" value={data.location} onChange={handleChange}validations={[required]}>
               <option value='San Francisco, CA'>San Francisco</option>
               <option value='New York, NY'>New York</option>
               <option value='Portland, OR'>Portland</option>
               <option value='Houston, TX'>Houston</option>
             </Select>
+            </div>
+          </div>
 
-          </FormGroup>
-
-          <BtnSpinner loading={successful} text="SignUp"/>
+          <BtnSpinner loading={successful} text="Sign Up"/>
 
          {message && (
              <div className='form-group'>

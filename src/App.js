@@ -10,7 +10,7 @@ import DogProfile from './components/DogProfile'
 import EditDog from './components/EditDog'
 import DogForm from './components/DogForm'
 import DogMatches from './components/DogMatches'
-
+import FourOFour from './components/FourOFour'
 import RandomDogs from './components/RandomDogs'
 
 // HOC which wraps around other Components
@@ -39,7 +39,9 @@ const App = () => {
         <Route path={'/profile/dogs/:dogid/matches'} component={DogMatches}/>
         <Route path={'/profile/dogs/:dogid/edit'} component={EditDog}/>
         
+
         <Route path={'/profile/dogs/:dogid'} component={DogProfile}/>
+        <Route path={'*'} component={FourOFour}/>
       </Switch>
     </Layout>
   )

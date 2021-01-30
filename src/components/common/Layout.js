@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom'
 import {getCurrentUser, logout} from '../../services/auth.service'
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import icon from '../../css/images/Fetch_Paw_1.png'
+
 
 const Layout = (props) => {
 
@@ -25,7 +27,14 @@ const Layout = (props) => {
   return (
   <div>
     <nav className="navbar navbar-expand navbar-dark bg-dark">
-      <Link to="/" className="navbar-brand">Fetch!</Link>
+      <Link to="/" className="navbar-brand">
+        <img 
+          src={icon} 
+          className='rounded-circle'
+          width='35px'
+          height='35px' 
+        />
+        </Link>
       <div className="navbar-nav mr-auto">
         <li className="nav-item">
           <Link to={"/home"} className="nav-link">Home</Link>
