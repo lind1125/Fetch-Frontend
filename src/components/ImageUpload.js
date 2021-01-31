@@ -22,16 +22,22 @@ const ImageUpload = ({handler, preview, imageSubmit, previewState}) => {
             value={selectedImage}
             />
         </FormGroup>
-        <button className='btn btn-primary btn-sm' type='button' onClick={imageSubmit.bind(this)}>
-          Upload Image
-        </button>
+        <div className='d-flex flex-column align-items-center'>
         {preview && (
+          
           <img 
           src={previewState}
           alt='' 
-          className='img-fluid rounded'
+          className='img-fluid rounded mx-0'
           />
+          
           )}
+          {previewState && (
+          <button className='btn btn-primary btn-sm mt-1' type='button' onClick={imageSubmit.bind(this)}>
+            Upload Image
+          </button>
+          )}
+          </div>
       </Form>
     </>
   )
