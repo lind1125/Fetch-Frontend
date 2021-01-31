@@ -16,6 +16,7 @@ const ImageUpload = ({handler, preview, imageSubmit, previewState}) => {
         <Form>
         <FormGroup text='Upload a photo of your dog!'>
           <Input
+            className='choose-file'
             type="file"
             name="image" 
             onChange={handler.bind(this)}
