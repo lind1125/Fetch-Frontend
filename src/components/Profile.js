@@ -21,9 +21,7 @@ const Profile = (props) =>{
   },[])
 
   const deleteUser = () => {
-    //console.log('deleting user')
     deleteProfile().then(data=>{
-      //console.log('pushing to new page')
     })
     logout()
     props.history.push("/signup")
@@ -31,7 +29,7 @@ const Profile = (props) =>{
   }
 
   const display = () => {
-    // console.log(currentUser)
+
     return !currentUser ?
        <NotLoggedIn/>
      :  (

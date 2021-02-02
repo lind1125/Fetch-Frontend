@@ -9,12 +9,10 @@ const DogMatches = (props) => {
 
   const dogId = props.match.params.dogid
   const currentUser = getCurrentUser()
-  console.log('CURRENT USER: ', currentUser.id)
   const [matches, setMatches] = useState([])
 
   useEffect(()=>{
       getMatches(dogId).then(response=>{
-        console.log(response.data)
         setMatches(response.data)
       })
   },[])
