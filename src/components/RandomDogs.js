@@ -15,7 +15,6 @@ const RandomDogs = (props) => {
   useEffect(()=>{
     if(getCurrentUser()){
       getRandomDogs(props.match.params.dogid).then(response=>{
-        console.log(response.data)
         setDogs(response.data)
       }).catch(err=>console.log(err))
     }

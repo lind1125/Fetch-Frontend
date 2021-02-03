@@ -97,7 +97,7 @@ const DogForm = (props) => {
 
   const handleSubmitImage = (e) => {
     e.preventDefault()
-    console.log('E!!!!!!', e.target)
+
     if (!previewSelection) return
     uploadImage(previewSelection)
   }
@@ -111,7 +111,6 @@ const DogForm = (props) => {
     formData.append('upload_preset', preset)
     try {
       const res = await axios.post(url, formData);
-      console.log('RES DATA:', res.data)
       const imageUrl = res.data.secure_url;
       handleImageValue(imageUrl)
     } catch (err) {
@@ -125,11 +124,10 @@ const handleImageValue = (imageUrl) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('FRONTEND DATA: ', data)
     setMessage("")
     // use the library to validate all fields on the form
     form.current.validateAll()
-    console.log("after validation", data.picture_url)
+
     // check on ages and sizes
     if(data.min_age>data.max_age){
       setMessage("Min age must be less than max age")
@@ -143,7 +141,6 @@ const handleImageValue = (imageUrl) => {
     // check min_age lte max_age and same for size
     if(checkBtn.current.context._errors.length === 0){
       setLoading(false)
-      console.log(data)
       updateDog(props.match.params.dogid,data).then((response)=>{
         setMessage(`Successfully updated ${data.name}`)
         setSuccessful(true)

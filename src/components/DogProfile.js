@@ -6,7 +6,7 @@ import NotLoggedIn from './common/NotLoggedIn'
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 // destructure props.location.state to have access on state
 const DogProfile = (props) => {
-  console.log(props.location.state)
+
   const currentUser = getCurrentUser() // from the header info, could probably pass down as props TODO
   const [dogdata, setDogdata] = useState(props.location.state && props.location.state.dog) // if accessing from the link, pull data from props.location.state.dog
 
@@ -45,7 +45,6 @@ const DogProfile = (props) => {
       return <NotLoggedIn/>
     }
     if(dogdata){
-      console.log(dogdata)
       return(
         <div>
           <h1 className="text-center">{dogdata.name}</h1>
