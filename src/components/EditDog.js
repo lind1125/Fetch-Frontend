@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import axios from 'axios'
 import Form from 'react-validation/build/form'
 import Input from 'react-validation/build/input'
@@ -60,15 +60,22 @@ const textLengthTemp = (value) => {
 
 
 const DogForm = (props) => {
-  const currentDogData = props.location.state
-
+  useEffect(()=>{
+    const currentDogData = props.location.state;
+    for (let property in currentDogData.preferences){
+      currentDogData[property] = currentDogData['preferences'][property]
+    }
+    delete currentDogData.preferences;
+    console.log(currentDogData)
+    setData(currentDogData)
+  },[])
   const form = useRef()
   const checkBtn = useRef()
 
   const [message,setMessage] = useState("")
   const [loading,setLoading] = useState(false)
   const [successful, setSuccessful] = useState(false)
-  const [data,setData] = useState(currentDogData)
+  const [data,setData] = useState({})
   const handleChange = (e) =>{
     setData({...data,[e.target.name]:e.target.value})
   }
@@ -129,7 +136,7 @@ const handleImageValue = (imageUrl) => {
     form.current.validateAll()
 
     // check on ages and sizes
-    if(data.min_age>data.max_age){
+    if(parseInt(data.min_age)>parseInt(data.max_age)){
       setMessage("Min age must be less than max age")
       return
     }
@@ -140,6 +147,7 @@ const handleImageValue = (imageUrl) => {
     setLoading(true)
     // check min_age lte max_age and same for size
     if(checkBtn.current.context._errors.length === 0){
+      console.log(data)
       setLoading(false)
       updateDog(props.match.params.dogid,data).then((response)=>{
         setMessage(`Successfully updated ${data.name}`)
@@ -266,9 +274,9 @@ const handleImageValue = (imageUrl) => {
                 <Input
                   type="number"
                   className="form-control"
-                  name="min_age"
+                  name='min_age'
                   min={0}
-                  value={data.preferences.min_age}
+                  value={data.min_age}
                   onChange={handleChange}
                   validations={[required]}
                 />
@@ -280,7 +288,7 @@ const handleImageValue = (imageUrl) => {
                   className="form-control"
                   name="max_age"
                   min={0}
-                  value={data.preferences.max_age}
+                  value={data.max_age}
                   onChange={handleChange}
                   validations={[required]}
                 />
@@ -291,7 +299,7 @@ const handleImageValue = (imageUrl) => {
                 <Select
                   className="form-control"
                   name="min_size"
-                  value={data.preferences.min_size}
+                  value={data.min_size}
                   onChange={handleChange}
                   validations={[required]}>
                   <option value='1'>Small</option>
@@ -305,7 +313,7 @@ const handleImageValue = (imageUrl) => {
                 <Select
                   className="form-control"
                   name="max_size"
-                  value={data.preferences.max_size}
+                  value={data.max_size}
                   onChange={handleChange}
                   validations={[required]}>
                   <option value='1'>Small</option>
