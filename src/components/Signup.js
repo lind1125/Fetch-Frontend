@@ -102,7 +102,7 @@ const Signup = (props) =>{
         />
         <Form onSubmit={handleSignup} ref={form}>
           <FormGroup>
-          <label class="sr-only" for="username">Username</label>
+          <label className="sr-only" htmlFor="username">Username</label>
             <Input
               type="text"
               className="form-control text-input"
@@ -115,7 +115,7 @@ const Signup = (props) =>{
           </FormGroup>
 
           <FormGroup >
-            <label class="sr-only" for="email">Email Address</label>
+            <label className="sr-only" htmlFor="email">Email Address</label>
             <Input
               type="text"
               placeholder="Email Address"
@@ -128,7 +128,7 @@ const Signup = (props) =>{
           </FormGroup>
 
           <FormGroup>
-            <label class="sr-only" for="password">Password</label>
+            <label className="sr-only" htmlFor="password">Password</label>
             <Input
               type="password"
               placeholder="Password"
@@ -143,7 +143,7 @@ const Signup = (props) =>{
           <div className="form-group">
             <div className="row">
 
-            <label for="location" className="col-md-4">Location: </label>
+            <label htmlFor="location" className="col-md-4">Location: </label>
             <Select  placeholder="Location" name='location' className="form-control text-input ml-md-3" value={data.location} onChange={handleChange}validations={[required]}>
               <option value='San Francisco, CA'>San Francisco</option>
               <option value='New York, NY'>New York</option>

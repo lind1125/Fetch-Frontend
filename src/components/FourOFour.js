@@ -10,7 +10,7 @@ const FourOFour = () => {
         <div class="col-md-4">
 
           <div>Page not found!</div>
-          <button class="btn btn-warning" onClick={()=> history.goBack()}> Go Back! </button>
+          <button className="btn btn-warning" onClick={()=> history.goBack()}> Go Back! </button>
         </div>
       </div>
     </div>
