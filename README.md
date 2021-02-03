@@ -3,7 +3,7 @@
 
 [**Link to Backend Repo**](https://github.com/SFX818/Team-2-backend)
 
-[**Link to Deployed App**](https://placekitten.com/)
+[**Link to Deployed App**](http://fetchappforpals.surge.sh/)
 
 ---
 
@@ -35,11 +35,45 @@
 1. npm i
 2. npm start
 
+---
+
+### Landing Page
+
+<img src="./readme_images/FetchLandingPage.png" />
+
+---
+
+### Wireframes
 
 
-- Screenshot of landing page
-- link to deployed frontend app
-- wireframes
+<img src="./readme_images/FetchSignup.png" height="325" width="175"/>
+
+---
+
+<img src="./readme_images/FetchLogin.png" height="325" width="175"/>
+
+---
+
+<img src="./readme_images/OwnerProfilePage.png" height="325" width="175"/>
+
+---
+
+<img src="./readme_images/DogProfilePage.png" height="325" width="175"/>
+
+---
+
+<img src="./readme_images/PotentialMatches_main.png" height="325" width="175"/>
+
+---
+
+<img src="./readme_images/PotentialMatches_clicked.png" height="325" width="175"/>
+
+---
+
+<img src="./readme_images/DogMatchesPage.png" height="325" width="175" />
+
+---
+
 - general approach (a couple paragraphs)
 - installation instructions
 - unsolved problems / major hurdles
