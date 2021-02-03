@@ -1,7 +1,7 @@
 import axios from 'axios'
 import authHeader from '../utils/authHeader.utils'
 
-const API_URL = "http://localhost:8080/"
+const API_URL = process.env.API_URL
 
 /*
 GET	 |   /profile	 |	retrieve user's profile
