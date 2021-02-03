@@ -10,9 +10,6 @@ POST |	/api/signin |	login an account
 
 //function to register user
 export const register = (username, email, password, location) => {
-  console.log(process.env.NODE_ENV)
-  console.log(process.env.REACT_APP_DEV_URL_AUTH)
-  console.log(API_URL)
   return axios.post(API_URL+'signup', {
     username,
     email,
