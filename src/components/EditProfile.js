@@ -96,7 +96,7 @@ const EditProfile = (props) => {
           />
           <Form onSubmit={handleEditProfile} ref={form}>
             <FormGroup>
-            <label class="sr-only" for="email">Email</label>
+            <label className="sr-only" htmlFor="email">Email</label>
               <Input
                 type="text"
 

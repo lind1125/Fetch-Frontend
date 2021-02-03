@@ -4,10 +4,10 @@ import { useHistory } from 'react-router-dom'
 const FourOFour = () => {
   const history = useHistory()
   return (
-    <div class="container">
+    <div className="container">
 
-      <div class="row justify-content-center">
-        <div class="col-md-4">
+      <div className="row justify-content-center">
+        <div className="col-md-4">
 
           <div>Page not found!</div>
           <button className="btn btn-warning" onClick={()=> history.goBack()}> Go Back! </button>

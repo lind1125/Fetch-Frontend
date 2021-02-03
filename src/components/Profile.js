@@ -51,7 +51,7 @@ const Profile = (props) =>{
           {dogs?<div className="container">
             {dogs.map(dog=>{
               return (<Link  to={ { pathname:`/profile/dogs/${dog._id}`,state:{dog:dog} } } key={dog._id} >
-                <div class="row align-items-center justify-content-start">
+                <div className="row align-items-center justify-content-start">
                   <div className="col-3"><h3 className="orange-bold">{dog.name}</h3></div>
                   <div className="col-5">
                     <img  className="profile-img-card" src={dog.picture_url} alt={dog.name}/>
@@ -64,7 +64,7 @@ const Profile = (props) =>{
           <div className="container">
             <Link to="/profile/dogs/new" className="">
 
-            <div class="row align-items-center justify-content-start">
+            <div className="row align-items-center justify-content-start">
               <div className="col-12">
                 <h4 className="orange-bold">
                   Add a dog
