@@ -1,7 +1,7 @@
 # Team-2-Project
 ## Fetch (frontend)
 
-[**Link to Backend Repo**](https://github.com/SFX818/Team-2-backend)
+[**Link to Backend Repo**](https://github.com/lind1125/Fetch-backend)
 
 [**Link to Deployed App**](http://fetchappforpals.surge.sh/)
 
